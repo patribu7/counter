@@ -1,9 +1,10 @@
-function makeElement(type, text) {
+function makeElement(type, text, className) {
   const element = document.createElement(type);
   element.innerText = text;
-  document.getElementById("container").appendChild(element);
+  element.classList.add(className);
+  document.getElementById('container').appendChild(element);
 };
 
-makeElement('button', '+');
-makeElement('button', '-');
-makeElement('div', 0);
+makeElement('button', '+', 'buttonPlus');
+makeElement('div', 0, 'number');
+makeElement('button', '-', 'buttonMinus');
