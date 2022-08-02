@@ -24,6 +24,9 @@ makeElement('button', '+', 'buttonPlus');
 makeElement('div', 0, 'number');
 makeElement('button', '-', 'buttonMinus');
 
-number = document.getElementById('number')
+number = document.getElementById('number');
+buttonPlus = document.getElementById('buttonPlus');
+buttonMinus = document.getElementById('buttonMinus');
 
-document.getElementById('buttonPlus').addEventListener('click', () => changeValue('incr', 1));
+buttonPlus.addEventListener('click', () => changeValue('incr', 1));
+buttonMinus.addEventListener('click', () => changeValue('decr', 1));
