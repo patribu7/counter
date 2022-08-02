@@ -1,5 +1,3 @@
-number = document.getElementById('number')
-
 function makeElement(type, text, id) {
   const element = document.createElement(type);
   element.innerText = text;
@@ -7,17 +5,13 @@ function makeElement(type, text, id) {
   document.getElementById('container').appendChild(element);
 };
 
-function changeValue(operation, value) {
-  switch (operation) {
-    case 'incr':
+function changeValue(value) {
+  if (value > 0) {
       number.innerText++
-      break;
 
-    case 'decr':
+    } else {
       number.innerText--
-      break;
-  }
-
+    }
 };
 
 makeElement('button', '+', 'buttonPlus');
@@ -28,5 +22,5 @@ number = document.getElementById('number');
 buttonPlus = document.getElementById('buttonPlus');
 buttonMinus = document.getElementById('buttonMinus');
 
-buttonPlus.addEventListener('click', () => changeValue('incr', 1));
-buttonMinus.addEventListener('click', () => changeValue('decr', 1));
+buttonPlus.addEventListener('click', () => changeValue(1));
+buttonMinus.addEventListener('click', () => changeValue(-1));
