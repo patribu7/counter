@@ -6,12 +6,7 @@ function makeElement(type, text, id) {
 };
 
 function changeValue(value) {
-  if (value > 0) {
-      number.innerText++
-
-    } else {
-      number.innerText--
-    }
+      number.innerText = parseInt(number.innerText) + value
 };
 
 makeElement('button', '+', 'buttonPlus');
