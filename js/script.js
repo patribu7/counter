@@ -14,6 +14,9 @@ function makeElement(type, text, id, parentId) {
     element.setAttribute('style','width: 50px');
   };
 
+  if (parent.classList.contains('list') && type === 'button') {
+    element.addEventListener('click', () => changeValue(+text));
+  };
 
 };
 
