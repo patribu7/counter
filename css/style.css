@@ -1,3 +1,13 @@
 div {
-  border-style: solid;
+  display: flex;
+  justify-content: center
+}
+
+.delConfirm {
+  display: none
+}
+
+.customButton {
+  align-items: center;
+  flex-direction: column;
 }
