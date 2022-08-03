@@ -62,6 +62,36 @@
   flex-direction: column;
 }
 
-.customButton > label, input {
+#customButtonSettup {
   display: none;
+  margin: 3em
+}
+
+#makeButton {
+  width: 100px;
+  height: 70px;
+}
+
+#customButtonSettup > input[type='number'], input[type='submit'], #yourButton {
+  width: auto;
+  height: 4em;
+  text-align: center;
+  margin: 5px;
+  padding: 5px
+}
+
+#customButtonSettup > input[type='number'], #yourButton {
+  width: 4em;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

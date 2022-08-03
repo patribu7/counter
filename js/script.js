@@ -25,3 +25,7 @@ plus.addEventListener('click', () => changeValue(1));
 minus.addEventListener('click', () => changeValue(-1));
 
 // funzioni aggiunte per mostrare la riusabilita' del codice
+// opzioni a scomparsa
+
+customButtonSettup = document.getElementById('customButtonSettup')
+document.getElementById('makeButton').addEventListener('click', () => customButtonSettup.style.display = 'block')
