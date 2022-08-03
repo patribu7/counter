@@ -49,6 +49,13 @@
 
 }
 
+.memoElm {
+  display: flex;
+  border-style: solid;
+  justify-content: center;
+  align-items: center;
+}
+
 #openSetup, #delMemo {
   margin: 2em;
   width: 5em;
