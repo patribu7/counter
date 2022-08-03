@@ -4,10 +4,15 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 4em
+}
+
 .box {
   display: flex;
   justify-content: center;
-  margin: 3em
+  margin: 3em;
+  margin-top: 0;
 }
 
 /*counter style*/
@@ -32,8 +37,11 @@
 
 /*memo style*/
 
-.memo {
-  align-items: center;
+.label {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
 }
 
 .delConfirm {
@@ -46,6 +54,7 @@
   height: 5em;
   width: 500px;
   margin: 2em;
+  margin-top: 0;
 
 }
 
@@ -56,44 +65,17 @@
   align-items: center;
 }
 
-#openSetup, #delMemo {
-  margin: 2em;
-  width: 5em;
-  height: 5em;
-}
-
-#customButtonSetup {
-  border-style: solid;
-  position: fixed;
-  width: 150px;
-  height: 200px;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  background-color: white;
-}
-
 
 
 /*custom button style*/
-.customButton {
-  align-items: center;
-  flex-direction: column;
-}
 
 #customButtonSetup {
   display: none;
-
 }
 
-#customButtonSetup > input[type='number'], input[type='submit']{
-  width: auto;
-  height: 4em;
-  text-align: center;
-  margin: 5px;
-  padding: 5px
+#customKeyboard {
+  border-style: solid;
 }
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -105,11 +87,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
-}
-
-#test {
-  background-color: green;
-  border-style: solid;
-  width: 5em;
-  height: 5em
 }
