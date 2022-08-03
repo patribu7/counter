@@ -1,6 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .box {
   display: flex;
   justify-content: center;
+  align-content: center;
   margin: 3em
 }
 
@@ -15,4 +22,21 @@
 
 .customButton > label, input {
   display: none;
+}
+
+#listMemo {
+  border-style: solid;
+  height: 5em;
+  width: 30em;
+  margin: 2em
+}
+
+.memorize{
+  align-items: center;
+}
+
+.memorize > button {
+  margin: 2em;
+  width: 5em;
+  height: 5em;
 }
