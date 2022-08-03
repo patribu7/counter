@@ -44,6 +44,14 @@ body {
 
 }
 
+
+input[type="number"] {
+  text-align: center;
+  width: 3em;
+  height: 3em;
+  margin: 1em 1em 0 1em;
+}
+
 .delConfirm {
   display: none
 }
@@ -58,7 +66,7 @@ body {
 
 }
 
-.memoElm {
+.listElm {
   display: flex;
   border-style: solid;
   justify-content: center;

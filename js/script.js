@@ -1,7 +1,6 @@
 let keyboard = []
 let counterButton = 0;
 
-/*aggiungere la classe (spero che se vuota la salti) e le misure*/
 function makeElement(type, text, id, parentId) {
   const element = document.createElement(type);
   const parent = document.getElementById(parentId);
@@ -11,10 +10,10 @@ function makeElement(type, text, id, parentId) {
   parent.appendChild(element);
 
   if (parent.classList.contains('list')) {
-    element.classList.add('memoElm')
-    element.setAttribute('style','width: 50px')
+    element.classList.add('listElm');
+    element.setAttribute('style','width: 50px');
+  };
 
-  }
 
 };
 
@@ -42,6 +41,9 @@ customButtonSetup = document.getElementById('customButtonSetup');
 document.getElementById('openSetup').addEventListener('click', () => customButtonSetup.style.display = 'block');
 
 document.getElementById('save').addEventListener('click', () => makeElement('div', number.innerText, '', 'listMemo'));
-/*e' rimasta la classe 'memoElm' sistemare!!!*/
+/*sistemare 'se il valore inserito e' diverso da NaN'*/
 let value = document.getElementById('value');
-document.getElementById('makeButton').addEventListener('click', () => makeElement('button', value.value, '', 'customKeyboard'))
+document.getElementById('makeButton').addEventListener('click', () =>{
+  makeElement('button', value.value, '', 'customKeyboard');
+  customButtonSetup.style.display = 'none';
+});
