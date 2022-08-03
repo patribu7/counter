@@ -41,4 +41,7 @@ minus.addEventListener('click', () => changeValue(-1));
 customButtonSetup = document.getElementById('customButtonSetup');
 document.getElementById('openSetup').addEventListener('click', () => customButtonSetup.style.display = 'block');
 
-document.getElementById('save').addEventListener('click', () => makeElement('div', number.innerText, '', 'customKeyboard'))
+document.getElementById('save').addEventListener('click', () => makeElement('div', number.innerText, '', 'listMemo'));
+/*e' rimasta la classe 'memoElm' sistemare!!!*/
+let value = document.getElementById('value');
+document.getElementById('makeButton').addEventListener('click', () => makeElement('button', value.value, '', 'customKeyboard'))
