@@ -1,23 +1,25 @@
 let keyboard = []
 let counterButton = 0;
 
-function makeElement(type, text, id, parentId) {
+function makeElement(type, text, parentId) {
   const element = document.createElement(type);
   const parent = document.getElementById(parentId);
 
   element.innerText = text;
-  element.setAttribute('id', id);
   parent.appendChild(element);
 
+  /*assegna la classe ElmList se verra' aggiunto ad una lista*/
   if (parent.classList.contains('list')) {
     element.classList.add('listElm');
     element.setAttribute('style','width: 50px');
   };
 
+  /*se e' un bottone di una lista assegna un addEventListener*/
   if (parent.classList.contains('list') && type === 'button') {
     element.addEventListener('click', () => changeValue(+text));
   };
 
+  /*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
   if (+element.innerText > 0) {
     element.classList.add('positive');
 
@@ -29,40 +31,55 @@ function makeElement(type, text, id, parentId) {
 
   };
 
+  return element
 };
 
 /*aggiungere una funzione che assegni una classe del colore giusto se negativo o positivo*/
 
 function changeValue(value) {
-      number.innerText = parseInt(number.innerText) + value
+      number.innerText = parseInt(number.innerText) + value;
 };
 
-makeElement('button', '-', 'minus', 'counter');
-makeElement('div', 0, 'number', 'counter');
-makeElement('button', '+', 'plus', 'counter');
+function hidden(element) {
+  if (element.style.display === 'none') {
+    element.style.display = 'block';
 
-number = document.getElementById('number');
-buttonPlus = document.getElementById('plus');
-buttonMinus = document.getElementById('minus');
+  } else {
+    element.style.display = 'none';
+  };
+};
 
-//assegno il colore
+/*creo il bottone minus*/
+const minus = makeElement('button', '-', 'counter');
+minus.id = 'minus';
+minus.classList.add('negative');
+
+/*creo lo schermo del contatore*/
+const number = makeElement('div', 0, 'counter');
+number.id = 'number';
 number.classList.remove('zero');
-buttonPlus.classList.add('positive');
-buttonMinus.classList.add('negative');
 
-//assegno la funzione
+/*creo il bottone plus*/
+const plus = makeElement('button', '+', 'counter');
+plus.id = 'plus';
+plus.classList.add('positive');
+
+//assegno la funzione di + e -
 plus.addEventListener('click', () => changeValue(1));
 minus.addEventListener('click', () => changeValue(-1));
 
+save = document.getElementById('save')
+save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
-// opzioni a scomparsa
-customButtonSetup = document.getElementById('customButtonSetup');
-document.getElementById('openSetup').addEventListener('click', () => customButtonSetup.style.display = 'block');
+// opzioni a scomparsa. stranamente funziona solo al secondo click!!!
+const customButtonSetup = document.getElementById('customButtonSetup');
+const openSetup = document.getElementById('openSetup');
+openSetup.addEventListener('click', () => hidden(customButtonSetup));
 
-document.getElementById('save').addEventListener('click', () => makeElement('div', number.innerText, '', 'listMemo'));
-/*sistemare 'se il valore inserito e' diverso da NaN'*/
+/*se non si inserisce valore il valore e' 0*/
 let value = document.getElementById('value');
-document.getElementById('makeButton').addEventListener('click', () =>{
-  makeElement('button', value.value, '', 'customKeyboard');
+document.getElementById('makeButton').addEventListener('click', () => {
+  if (value.value == '') { value.value = 0};
+  makeElement('button', value.value, 'customKeyboard');
   customButtonSetup.style.display = 'none';
 });

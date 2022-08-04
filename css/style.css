@@ -93,6 +93,7 @@ input[type="number"] {
 
 }
 
+/*sistemare il comportamento tra bordi*/
 .listElm {
   display: flex;
   border-style: solid;
