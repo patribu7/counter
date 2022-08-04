@@ -46,6 +46,7 @@ buttonPlus = document.getElementById('plus');
 buttonMinus = document.getElementById('minus');
 
 //assegno il colore
+number.classList.remove('zero');
 buttonPlus.classList.add('positive');
 buttonMinus.classList.add('negative');
 
