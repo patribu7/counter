@@ -5,20 +5,20 @@ function makeElement(type, text, parentId) {
   element.innerText = text;
   parent.appendChild(element);
 
-  /*se e' un div di una lista assegna la classe e ElmList*/
-  if (parent.classList.contains('list') && type === 'div') {
+  /*se e' un div di una lista assegna la classe e ElmList e controlla il limite degli Elm*/
+
+  if (parent.classList.contains('list')) {
     element.classList.add('listElm');
-    limitElmTo(10, listMemo);
+    limitElmTo(10, parent);
+    addClassColor(element);
 
-  };
+  }
 
-  /*se e' un bottone di una lista assegna un addEventListener*/
-  if (parent.classList.contains('list') && type === 'button') {
-    element.addEventListener('click', () => changeValue(+text));
-    limitElmTo(10, keyboard);
-  };
+  return element
+};
 
-  /*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
+/*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
+function addClassColor(element) {
   if (+element.innerText > 0) {
     element.classList.add('positive');
 
@@ -29,22 +29,16 @@ function makeElement(type, text, parentId) {
     element.classList.add('zero');
 
   };
-
-  return element
 };
 
-/*controlla quale toglie, se l'ultimo o il piu' vecchio*/
 function limitElmTo(num, list) {
   if ( list.childElementCount > num) {
     list.removeChild(list.getElementsByClassName('listElm')[0]);
-  }
+  };
 };
 
-
-/*aggiungere una funzione che assegni una classe del colore giusto se negativo o positivo*/
-
 function changeValue(value) {
-      number.innerText = parseInt(number.innerText) + value;
+      number.innerText = +number.innerText + value;
 };
 
 function hidden(element) {
@@ -64,7 +58,6 @@ minus.classList.add('negative');
 /*creo lo schermo del contatore*/
 const number = makeElement('div', 0, 'counter');
 number.id = 'number';
-number.classList.remove('zero');
 
 /*creo il bottone plus*/
 const plus = makeElement('button', '+', 'counter');
