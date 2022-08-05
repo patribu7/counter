@@ -80,15 +80,16 @@ plus.classList.add('positive');
 plus.addEventListener('click', () => changeValue(1, number));
 minus.addEventListener('click', () => changeValue(-1, number));
 
-save = document.getElementById('save')
 save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
-const customButtonSetup = document.getElementById('customButtonSetup');
-const openSetup = document.getElementById('openSetup');
-openSetup.addEventListener('click', () => hidden(customButtonSetup));
+openSetup.addEventListener('click', () => {
+  /*il valore e' il numero nel counter di default*/
+  value.value = +number.innerText;
+  hidden(customButtonSetup);
+});
 
 /*se non si inserisce valore il valore e' 0*/
-let value = document.getElementById('value');
+
 document.getElementById('makeButton').addEventListener('click', () => {
   if (value.value == '') { value.value = 0};
   makeElement('button', value.value, 'customKeyboard');
