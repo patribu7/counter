@@ -83,3 +83,7 @@ document.getElementById('makeButton').addEventListener('click', () => {
   makeElement('button', value.value, 'customKeyboard');
   customButtonSetup.style.display = 'none';
 });
+
+/*refresh page with reset*/
+
+reset.addEventListener('click', () => location.reload())
