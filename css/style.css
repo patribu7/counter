@@ -90,7 +90,6 @@ input[type="number"] {
 
 .list {
   display: flex;
-  flex-wrap: wrap;
   border-style: solid;
   border-color: orange;
   border-radius: 6px;
@@ -109,6 +108,7 @@ input[type="number"] {
   border-style: solid;
   width: 10%;
   height: 100%;
+
 }
 
 .positive {
@@ -127,10 +127,6 @@ input[type="number"] {
 }
 
 /*custom button style*/
-
-#customButtonSetup {
-  display: none;
-}
 
 #customKeyboard {
   border-style: solid;
