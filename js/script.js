@@ -6,13 +6,15 @@ function makeElement(type, text, parentId) {
   parent.appendChild(element);
 
   /*se e' un div di una lista assegna la classe e ElmList e controlla il limite degli Elm*/
-
   if (parent.classList.contains('list')) {
     element.classList.add('listElm');
     limitElmTo(10, parent);
     addClassColor(element);
 
-  }
+    if (type === 'button') {
+      element.addEventListener('click', () => changeValue(+text, number))
+    };
+  };
 
   return element
 };
@@ -37,8 +39,8 @@ function limitElmTo(num, list) {
   };
 };
 
-function changeValue(value) {
-      number.innerText = +number.innerText + value;
+function changeValue(value, item) {
+      item.innerText = +item.innerText + value;
 };
 
 function hidden(element) {
@@ -48,6 +50,16 @@ function hidden(element) {
   } else {
     element.style.display = 'none';
   };
+};
+
+function confermDeleteMemos() {
+  listMemo.childNodes.forEach((item, i) => {
+    item.classList.add('toDelete');
+  });
+  let confirmAction = confirm('Are you sure to delete all your memo?');
+  if (confirmAction) {
+      listMemo.innerHTML = '';
+  }
 };
 
 /*creo il bottone minus*/
@@ -65,13 +77,12 @@ plus.id = 'plus';
 plus.classList.add('positive');
 
 //assegno la funzione di + e -
-plus.addEventListener('click', () => changeValue(1));
-minus.addEventListener('click', () => changeValue(-1));
+plus.addEventListener('click', () => changeValue(1, number));
+minus.addEventListener('click', () => changeValue(-1, number));
 
 save = document.getElementById('save')
 save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
-// opzioni a scomparsa. stranamente funziona solo al secondo click!!!
 const customButtonSetup = document.getElementById('customButtonSetup');
 const openSetup = document.getElementById('openSetup');
 openSetup.addEventListener('click', () => hidden(customButtonSetup));
@@ -84,6 +95,11 @@ document.getElementById('makeButton').addEventListener('click', () => {
   customButtonSetup.style.display = 'none';
 });
 
-/*refresh page with reset*/
+/*del option*/
+del.addEventListener('click', () => confermDeleteMemos());
 
+
+
+
+/*refresh page with reset*/
 reset.addEventListener('click', () => location.reload())

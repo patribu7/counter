@@ -18,10 +18,6 @@ body {
 
 /*counter style*/
 
-#counter {
-
-}
-
 #number {
   display: flex;
   align-items: center;
@@ -84,10 +80,6 @@ input[type="number"] {
   margin: 1em 1em 0 1em;
 }
 
-.delConfirm {
-  display: none
-}
-
 .list {
   display: flex;
   border-style: solid;
@@ -124,6 +116,10 @@ input[type="number"] {
 .zero {
   background-color: white;
   color: gray
+}
+
+.toDelete {
+  background-color: black;
 }
 
 /*custom button style*/
