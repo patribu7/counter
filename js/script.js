@@ -1,6 +1,3 @@
-let keyboard = []
-let counterButton = 0;
-
 function makeElement(type, text, parentId) {
   const element = document.createElement(type);
   const parent = document.getElementById(parentId);
@@ -8,15 +5,17 @@ function makeElement(type, text, parentId) {
   element.innerText = text;
   parent.appendChild(element);
 
-  /*assegna la classe ElmList se verra' aggiunto ad una lista*/
-  if (parent.classList.contains('list')) {
+  /*se e' un div di una lista assegna la classe e ElmList*/
+  if (parent.classList.contains('list') && type === 'div') {
     element.classList.add('listElm');
-    element.setAttribute('style','width: 50px');
+    limitElmTo(10, listMemo);
+
   };
 
   /*se e' un bottone di una lista assegna un addEventListener*/
   if (parent.classList.contains('list') && type === 'button') {
     element.addEventListener('click', () => changeValue(+text));
+    limitElmTo(10, keyboard);
   };
 
   /*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
@@ -33,6 +32,14 @@ function makeElement(type, text, parentId) {
 
   return element
 };
+
+/*controlla quale toglie, se l'ultimo o il piu' vecchio*/
+function limitElmTo(num, list) {
+  if ( list.childElementCount > num) {
+    list.removeChild(list.getElementsByClassName('listElm')[0]);
+  }
+};
+
 
 /*aggiungere una funzione che assegni una classe del colore giusto se negativo o positivo*/
 
