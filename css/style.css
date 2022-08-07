@@ -26,16 +26,18 @@ box-shadow: 5px 5px 5px #00000075;
 
 #number {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 4em;
   border-style: solid;
   border-color: gray;
-  border-width: 2em;
+  border-width: 25px;
+  width: 15em;
 
 }
 
 #counter > button {
-  padding: 3em;
+  padding: 3em
 }
 
 #minus {
