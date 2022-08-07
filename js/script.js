@@ -84,7 +84,7 @@ function makeCustomButton() {
 };
 
 
-/*creo il bottone minus*/
+/*creo il bottone meno*/
 const minus = makeElement('button', '-', 'counter');
 minus.id = 'minus';
 minus.classList.add('negative');
@@ -93,7 +93,7 @@ minus.classList.add('negative');
 const number = makeElement('div', 0, 'counter');
 number.id = 'number';
 
-/*creo il bottone plus*/
+/*creo il bottone piu'*/
 const plus = makeElement('button', '+', 'counter');
 plus.id = 'plus';
 plus.classList.add('positive');
