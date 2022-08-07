@@ -6,7 +6,13 @@
 
 body {
   margin: 4em;
-  background-color: AntiqueWhite;
+  background-color: mintCream;
+  font-family: monospace;
+  font-size: 10pt
+}
+
+#reset, .label > button {
+box-shadow: 5px 5px 5px #00000075;
 }
 
 .box {
@@ -25,6 +31,7 @@ body {
   border-style: solid;
   border-color: gray;
   border-width: 2em;
+
 }
 
 #counter > button {
@@ -57,16 +64,17 @@ body {
   width: 6em;
   height: 6em;
   border-style: solid;
-  border-color: orange;
-  background-color: gold;
+  border-bottom: none;
+  border-color: gray;
+  background-color: #d1fdc8;
 
 }
 
 #reset {
   border-style: solid;
-  border-color: orange;
+  border-color: gray;
   border-radius: 6px;
-  background-color: gold;
+  background-color: #d1fdc8;
   width: 12em;
   height: 6em;
 
@@ -80,24 +88,40 @@ input[type="number"] {
   margin: 1em 1em 0 1em;
 }
 
+/*sistemare il comportamento tra bordi*/
 .list {
   display: flex;
   border-style: solid;
-  border-color: orange;
+  border-color: gray;
   border-radius: 6px;
   height: 5em;
   width: 500px;
   margin: 2em;
   margin-top: 0;
+  background-color: MintCream;
 
 }
 
-/*sistemare il comportamento tra bordi*/
+#customButtonSetup {
+  border-style: solid;
+  height: 5em;
+  width: 500px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+#makeButton {
+  float: right;
+  height: 100%;
+  width: 100px;
+}
+
 .listElm {
   display: flex;
   justify-content: center;
   align-items: center;
   border-style: solid;
+  border-radius: 6px;
   width: 10%;
   height: 100%;
 }
@@ -127,6 +151,7 @@ input[type="number"] {
 #customKeyboard {
   border-style: solid;
 }
+
 
 
 

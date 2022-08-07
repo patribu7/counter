@@ -45,9 +45,13 @@ function changeValue(value, item) {
 
 function hidden(element) {
   if (element.style.display === 'none') {
+    openSetup.innerText = '^';
+    openSetup.style.height = '30px';
     element.style.display = 'block';
 
   } else {
+    openSetup.innerText = 'Make your own button!'
+    openSetup.style.height = '';
     element.style.display = 'none';
   };
 };
