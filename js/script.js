@@ -41,7 +41,7 @@ function addClassColor(element) {
 
 
 function changeValue(value, item) {
-      item.innerText = +item.innerText + value;
+      item.getElementsByTagName('span')[0].innerText = +item.innerText + value;
 };
 
 function hidden(element) {
@@ -85,18 +85,21 @@ function makeCustomButton() {
 
 
 /*creo il bottone meno*/
-const minus = makeElement('button', '-', 'counter');
+const minus = makeElement('button', '', 'counter');
 minus.id = 'minus';
 minus.classList.add('negative');
+const spanMinus = makeElement('span', '-', 'minus');
 
 /*creo lo schermo del contatore*/
-const number = makeElement('div', 0, 'counter');
+const number = makeElement('div', '', 'counter');
 number.id = 'number';
+const spanNumber = makeElement('span', 0, 'number');
 
 /*creo il bottone piu'*/
-const plus = makeElement('button', '+', 'counter');
+const plus = makeElement('button', '', 'counter');
 plus.id = 'plus';
 plus.classList.add('positive');
+const spanPlus = makeElement('span', '+', 'plus');
 
 //assegno la funzione di + e -
 plus.addEventListener('click', () => changeValue(1, number));
