@@ -19,6 +19,12 @@ function makeElement(type, text, parentId) {
   return element
 };
 
+function limitElmTo(num, list) {
+  if ( list.childElementCount > num) {
+    list.removeChild(list.getElementsByClassName('listElm')[0]);
+  };
+};
+
 /*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
 function addClassColor(element) {
   if (+element.innerText > 0) {
@@ -33,11 +39,6 @@ function addClassColor(element) {
   };
 };
 
-function limitElmTo(num, list) {
-  if ( list.childElementCount > num) {
-    list.removeChild(list.getElementsByClassName('listElm')[0]);
-  };
-};
 
 function changeValue(value, item) {
       item.innerText = +item.innerText + value;
@@ -45,15 +46,23 @@ function changeValue(value, item) {
 
 function hidden(element) {
   if (element.style.display === 'none') {
-    openSetup.innerText = '^';
-    openSetup.style.height = '30px';
-    element.style.display = 'block';
+    showSetupCustomButton(element)
 
   } else {
-    openSetup.innerText = 'Make your own button!'
-    openSetup.style.height = '';
-    element.style.display = 'none';
+    hideSetupCustomButton(element)
   };
+};
+
+function showSetupCustomButton(element) {
+  element.style.display = 'block';
+  openSetup.innerText = '^';
+  openSetup.style.height = '30px';
+};
+
+function hideSetupCustomButton(element) {
+  element.style.display = 'none';
+  openSetup.innerText = 'Make your own button!'
+  openSetup.style.height = '';
 };
 
 function confermDeleteMemos() {
@@ -65,6 +74,15 @@ function confermDeleteMemos() {
       listMemo.innerHTML = '';
   }
 };
+
+function makeCustomButton() {
+  /*se non si inserisce valore il valore e' 0*/
+  if (value.value == '') {
+    value.value = 0
+  };
+  makeElement('button', value.value, 'customKeyboard');
+};
+
 
 /*creo il bottone minus*/
 const minus = makeElement('button', '-', 'counter');
@@ -84,27 +102,27 @@ plus.classList.add('positive');
 plus.addEventListener('click', () => changeValue(1, number));
 minus.addEventListener('click', () => changeValue(-1, number));
 
+//tasto salva
 save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
+//tasto openSetup
 openSetup.addEventListener('click', () => {
   /*il valore e' il numero nel counter di default*/
   value.value = +number.innerText;
   hidden(customButtonSetup);
 });
 
-/*se non si inserisce valore il valore e' 0*/
 
-document.getElementById('makeButton').addEventListener('click', () => {
-  if (value.value == '') { value.value = 0};
-  makeElement('button', value.value, 'customKeyboard');
-  customButtonSetup.style.display = 'none';
+makeButton.addEventListener('click', () => {
+  makeCustomButton();
+  hideSetupCustomButton(customButtonSetup)
 });
 
-/*del option*/
+//tasto cancella
 del.addEventListener('click', () => confermDeleteMemos());
 
 
 
 
-/*refresh page with reset*/
+//refresh page with reset
 reset.addEventListener('click', () => location.reload())
