@@ -25,7 +25,7 @@ function limitElmTo(num, list) {
   };
 };
 
-/*assegna una classe che cambia il colore a seconda se il valore mostrato e' positivo, negativo, oppure zero*/
+/*assegna una classe che cambia il colore a seconda se il testo mostrato e' positivo, negativo, oppure zero*/
 function addClassColor(element) {
   if (+element.innerText > 0) {
     element.classList.add('positive');
@@ -39,30 +39,22 @@ function addClassColor(element) {
   };
 };
 
-
-function changeValue(value, item) {
-      item.getElementsByTagName('span')[0].innerText = +item.innerText + value;
+function changeValue(value, element) {
+      element.getElementsByTagName('span')[0].innerText = +element.innerText + value;
 };
 
-function hidden(element) {
-  if (element.style.display === 'none') {
-    showSetupCustomButton(element)
-
-  } else {
-    hideSetupCustomButton(element)
-  };
+function show(element) {
+  element.hidden = false;
 };
 
-function showSetupCustomButton(element) {
-  element.style.display = 'block';
-  openSetup.innerText = '^';
-  openSetup.style.height = '30px';
+function hide(element) {
+  element.hidden = true;
 };
 
-function hideSetupCustomButton(element) {
-  element.style.display = 'none';
-  openSetup.innerText = 'Make your own button!'
-  openSetup.style.height = '';
+function changeBtnApparence(btn, text, height) {
+  btn.innerText = text;
+  btn.style.height = height;
+
 };
 
 function confermDeleteMemos() {
@@ -76,54 +68,60 @@ function confermDeleteMemos() {
 };
 
 function makeCustomButton() {
-  /*se non si inserisce valore il valore e' 0*/
+  /*si lascia vuoto valore il valore e' 0*/
   if (value.value == '') {
     value.value = 0
   };
   makeElement('button', value.value, 'customKeyboard');
 };
 
-
-/*creo il bottone meno*/
+/*imposto il bottone meno*/
 const minus = makeElement('button', '', 'counter');
 minus.id = 'minus';
 minus.classList.add('negative');
 const spanMinus = makeElement('span', '-', 'minus');
 
-/*creo lo schermo del contatore*/
+/*imposto lo schermo del contatore*/
 const number = makeElement('div', '', 'counter');
 number.id = 'number';
 const spanNumber = makeElement('span', 0, 'number');
 
-/*creo il bottone piu'*/
+/*imposto il bottone piu'*/
 const plus = makeElement('button', '', 'counter');
 plus.id = 'plus';
 plus.classList.add('positive');
 const spanPlus = makeElement('span', '+', 'plus');
 
 //assegno la funzione di + e -
-plus.addEventListener('click', () => changeValue(1, number));
-minus.addEventListener('click', () => changeValue(-1, number));
+plus.addEventListener('mousedown', () => changeValue(1, number));
+minus.addEventListener('mousedown', () => changeValue(-1, number));
 
-//tasto salva
-save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
+//imposto il customButtonSetup
+customButtonSetup.hidden = true //// WARNING: dovrei chiamare i menu in un modo omogeneo
 
-//tasto openSetup
-openSetup.addEventListener('click', () => {
+//tasto btnOpenSetup
+btnOpenSetup.addEventListener('click', () => {
   /*il valore e' il numero nel counter di default*/
   value.value = +number.innerText;
-  hidden(customButtonSetup);
-});
+  if (customButtonSetup.hidden === true) {
+    show(customButtonSetup);
+    changeBtnApparence(btnOpenSetup, '^', '30px')
 
+  } else {
+    hide(customButtonSetup);
+    changeBtnApparence(btnOpenSetup,'Make your own button!', '' )
+  };
+});
 
 makeButton.addEventListener('click', () => {
   makeCustomButton();
-  hideSetupCustomButton(customButtonSetup)
 });
 
 //tasto cancella
 del.addEventListener('click', () => confermDeleteMemos());
 
+//tasto salva
+save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
 
 
