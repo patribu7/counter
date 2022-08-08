@@ -103,7 +103,7 @@ customButtonSetup.hidden = true //// WARNING: dovrei chiamare i menu in un modo 
 btnOpenSetup.addEventListener('click', () => {
   /*il valore e' il numero nel counter di default*/
   value.value = +number.innerText;
-  if (customButtonSetup.hidden === true) {
+  if (customButtonSetup.hidden) {
     show(customButtonSetup);
     changeBtnApparence(btnOpenSetup, '^', '30px')
 
@@ -120,7 +120,7 @@ makeButton.addEventListener('click', () => {
 //tasto cancella
 del.addEventListener('click', () => confermDeleteMemos());
 
-//tasto salva
+//tasto salva memo
 save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
 
 
