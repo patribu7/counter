@@ -120,7 +120,7 @@ label.for = 'value';
 
 insertValue = makeElement('input', '', menuButtonSetupMaking);
 insertValue.type = 'number';
-insertValue.value = 0;
+insertValue.value = '';
 insertValue.id = 'value';
 
 makeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
@@ -129,11 +129,12 @@ makeButton.id = 'makeButton';
 //imposto il tasto per aprire il menu per il customBtn
 btnOpenSetup = makeElement('button', 'Make your own button!', body.children[4]);
 btnOpenSetup.addEventListener('click', () => {
-  /*il valore e' il numero nel counter di default*/
-  value.value = +number.innerText;
+
+  value.value = +number.innerText;//il valore e' il numero nel counter di default
   if (menuButtonSetupMaking.hidden) {
     show(menuButtonSetupMaking);
-    changeBtnApparence(btnOpenSetup, '^', '30px')
+    changeBtnApparence(btnOpenSetup, '^', '30px');
+    insertValue.select(); //mette subito il focus sulla casella per inserire il valore
 
   } else {
     hide(menuButtonSetupMaking);
