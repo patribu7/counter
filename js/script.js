@@ -123,8 +123,8 @@ insertValue.type = 'number';
 insertValue.value = '';
 insertValue.id = 'value';
 
-makeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
-makeButton.id = 'makeButton';
+btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
+btnMakeButton.id = 'btnMakeButton';
 
 //imposto il tasto per aprire il menu per il customBtn
 btnOpenSetup = makeElement('button', 'Make your own button!', body.children[4]);
@@ -142,7 +142,7 @@ btnOpenSetup.addEventListener('click', () => {
   };
 });
 
-makeButton.addEventListener('click', () => {
+btnMakeButton.addEventListener('click', () => {
   makeCustomButton();
 });
 
