@@ -1,6 +1,5 @@
-function makeElement(type, text, parentId) {
+function makeElement(type, text, parent) {
   const element = document.createElement(type);
-  const parent = document.getElementById(parentId);
 
   element.innerText = text;
   parent.appendChild(element);
@@ -72,43 +71,72 @@ function makeCustomButton() {
   if (value.value == '') {
     value.value = 0
   };
-  makeElement('button', value.value, 'customKeyboard');
+  makeElement('button', value.value, customKeyboard);
 };
 
+const body = document.getElementsByTagName('body')[0];
+
+//imposto btnDeleteMemos
+btnDeleteMemos = makeElement('button', 'DEL', body.children[0]);
+btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
+
+//imposto la lista dei memos
+listMemo = makeElement('div', '', body.children[1]);
+listMemo.classList.add('list');
+listMemo.id = listMemo;
+
+//imposto il bottone salva memo
+btnSaveMemo = makeElement('button', 'SAVE THIS', body.children[2]);
+btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
+
 /*imposto il bottone meno*/
-const minus = makeElement('button', '', 'counter');
+const minus = makeElement('button', '', counter);
 minus.id = 'minus';
 minus.classList.add('negative');
-const spanMinus = makeElement('span', '-', 'minus');
+const spanMinus = makeElement('span', '-', minus);
 
-/*imposto lo schermo del contatore*/
-const number = makeElement('div', '', 'counter');
+/*imposto il box del contatore*/
+const number = makeElement('div', '', counter);
 number.id = 'number';
-const spanNumber = makeElement('span', 0, 'number');
+const spanNumber = makeElement('span', 0, number);
 
 /*imposto il bottone piu'*/
-const plus = makeElement('button', '', 'counter');
+const plus = makeElement('button', '', counter);
 plus.id = 'plus';
 plus.classList.add('positive');
-const spanPlus = makeElement('span', '+', 'plus');
+const spanPlus = makeElement('span', '+', plus);
 
-//assegno la funzione di + e -
+//assegno la funzione incremento e decremento di + e -
 plus.addEventListener('mousedown', () => changeValue(1, number));
 minus.addEventListener('mousedown', () => changeValue(-1, number));
 
-//imposto il customButtonSetup
-customButtonSetup.hidden = true //// WARNING: dovrei chiamare i menu in un modo omogeneo
+//imposto il menuButtonSetupMaking
+menuButtonSetupMaking = makeElement('div', '', body.children[5]);
+menuButtonSetupMaking.classList.add('menuButtonSetupMaking');
+menuButtonSetupMaking.hidden = true;
 
-//tasto btnOpenSetup
+label = makeElement('label', 'insert a value for your button', menuButtonSetupMaking);
+label.for = 'value';
+
+insertValue = makeElement('input', '', menuButtonSetupMaking);
+insertValue.type = 'number';
+insertValue.value = 0;
+insertValue.id = 'value';
+
+makeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
+makeButton.id = 'makeButton';
+
+//imposto il tasto per aprire il menu per il customBtn
+btnOpenSetup = makeElement('button', 'Make your own button!', body.children[4]);
 btnOpenSetup.addEventListener('click', () => {
   /*il valore e' il numero nel counter di default*/
   value.value = +number.innerText;
-  if (customButtonSetup.hidden) {
-    show(customButtonSetup);
+  if (menuButtonSetupMaking.hidden) {
+    show(menuButtonSetupMaking);
     changeBtnApparence(btnOpenSetup, '^', '30px')
 
   } else {
-    hide(customButtonSetup);
+    hide(menuButtonSetupMaking);
     changeBtnApparence(btnOpenSetup,'Make your own button!', '' )
   };
 });
@@ -117,13 +145,11 @@ makeButton.addEventListener('click', () => {
   makeCustomButton();
 });
 
-//tasto cancella
-del.addEventListener('click', () => confermDeleteMemos());
+//imposto il customKeyboard
+customKeyboard = makeElement('div', '', body.children[6]);
+customKeyboard.classList.add('list', 'customKeyboard');
 
-//tasto salva memo
-save.addEventListener('click', () => makeElement('div', number.innerText, 'listMemo'));
-
-
-
-//refresh page with reset
-reset.addEventListener('click', () => location.reload())
+//imposto il tasto RESET
+btnReset = makeElement('button', 'RESET', body.children[7]);
+btnReset.classList.add('reset');
+btnReset.addEventListener('click', () => location.reload());
