@@ -1,3 +1,6 @@
+let limitCharInListElm = 3;
+let limitCharInNumbermyConsole = 6;
+
 function makeElement(type, text, parent) {
   const element = document.createElement(type);
 
@@ -76,32 +79,19 @@ function makeCustomButton() {
 
 const body = document.getElementsByTagName('body')[0];
 
-//imposto btnDeleteMemos
-btnDeleteMemos = makeElement('button', 'DEL', body.children[0]);
-btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
-
-//imposto la lista dei memos
-listMemo = makeElement('div', '', body.children[1]);
-listMemo.classList.add('list');
-listMemo.id = listMemo;
-
-//imposto il bottone salva memo
-btnSaveMemo = makeElement('button', 'SAVE THIS', body.children[2]);
-btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
-
 /*imposto il bottone meno*/
-const minus = makeElement('button', '', counter);
+const minus = makeElement('button', '', myConsole);
 minus.id = 'minus';
 minus.classList.add('negative');
 const spanMinus = makeElement('span', '-', minus);
 
 /*imposto il box del contatore*/
-const number = makeElement('div', '', counter);
+const number = makeElement('div', '', myConsole);
 number.id = 'number';
 const spanNumber = makeElement('span', 0, number);
 
 /*imposto il bottone piu'*/
-const plus = makeElement('button', '', counter);
+const plus = makeElement('button', '', myConsole);
 plus.id = 'plus';
 plus.classList.add('positive');
 const spanPlus = makeElement('span', '+', plus);
@@ -110,8 +100,23 @@ const spanPlus = makeElement('span', '+', plus);
 plus.addEventListener('mousedown', () => changeValue(1, number));
 minus.addEventListener('mousedown', () => changeValue(-1, number));
 
+
+//imposto btnDeleteMemos
+btnDeleteMemos = makeElement('button', 'DEL', body.children[1]);
+btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
+
+//imposto la lista dei memos
+listMemo = makeElement('div', '', body.children[2]);
+listMemo.classList.add('list');
+listMemo.id = listMemo;
+
+//imposto il bottone salva memo
+btnSaveMemo = makeElement('button', 'SAVE THIS', body.children[3]);
+btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
+
+
 //imposto il menuButtonSetupMaking
-menuButtonSetupMaking = makeElement('div', '', body.children[5]);
+menuButtonSetupMaking = makeElement('div', '', body.children[4]);
 menuButtonSetupMaking.classList.add('menuButtonSetupMaking');
 menuButtonSetupMaking.hidden = true;
 
@@ -127,10 +132,10 @@ btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
 btnMakeButton.id = 'btnMakeButton';
 
 //imposto il tasto per aprire il menu per il customBtn
-btnOpenSetup = makeElement('button', 'Make your own button!', body.children[4]);
+btnOpenSetup = makeElement('button', 'Make your own button!', body.children[5]);
 btnOpenSetup.addEventListener('click', () => {
 
-  value.value = +number.innerText;//il valore e' il numero nel counter di default
+  value.value = +number.innerText;//il valore e' il numero nel myConsole di default
   if (menuButtonSetupMaking.hidden) {
     show(menuButtonSetupMaking);
     changeBtnApparence(btnOpenSetup, '^', '30px');
