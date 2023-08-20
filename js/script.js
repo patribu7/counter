@@ -99,6 +99,9 @@ const menu = makeElement('div', '', monitor);
 menu.classList.add('menu');
 const number = makeElement('span', 0, monitor);
 
+menu.classList.add('space');
+const space = makeElement('span', '', monitor);
+
 /*imposto il bottone piu'*/
 const plus = makeElement('button', '', myConsole);
 plus.id = 'plus';
