@@ -1,0 +1,23 @@
+=>too many charset in new buttons - se il testo del memo o del custom button e' lungo...
+  - il limite per gli listElm e' 3 carateri
+  - il limite per in counter e' 6
+  -se e' superiore al limite: funzione che fa: overMe! position: fix text button
+  - per il counter si puo' cambiare la width
+
+
+add let in new var!!!
+
+?fare in modo che se il tasto resta premuto il counter continua
+?shortcut
+
+aggiungere le fariabili. Id non credo basti
+
+
+
+\\scelte:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ho scelto di fare tutti i div e di richiemarli con una lista. percio' il div[0] e' il primo e ci mettero' un elemento...
+ero brutto il
+div1 = makeElement('div', '', body);
+div1.classList.add('label');
+
+fai in modo che la casella dove selezioni il valore del nuovo bottone sia la prima attiva; evidenziato il testo anche

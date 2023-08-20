@@ -1,5 +1,9 @@
+//---------------impostazini---------------------
+
 let limitCharInListElm = 3;
 let limitCharInNumbermyConsole = 6;
+
+//---------------funzioni---------------------
 
 function makeElement(type, text, parent) {
   const element = document.createElement(type);
@@ -42,7 +46,7 @@ function addClassColor(element) {
 };
 
 function changeValue(value, element) {
-      element.getElementsByTagName('span')[0].innerText = +element.innerText + value;
+      element.innerText = +element.innerText + value;
 };
 
 function show(element) {
@@ -77,6 +81,8 @@ function makeCustomButton() {
   makeElement('button', value.value, customKeyboard);
 };
 
+//---------------oggetti---------------------
+
 const body = document.getElementsByTagName('body')[0];
 
 /*imposto il bottone meno*/
@@ -86,9 +92,12 @@ minus.classList.add('negative');
 const spanMinus = makeElement('span', '-', minus);
 
 /*imposto il box del contatore*/
-const number = makeElement('div', '', myConsole);
-number.id = 'number';
-const spanNumber = makeElement('span', 0, number);
+const monitor = makeElement('div', '', myConsole);
+monitor.id = 'monitor';
+const menu = makeElement('div', '', monitor);
+
+menu.classList.add('menu');
+const number = makeElement('span', 0, monitor);
 
 /*imposto il bottone piu'*/
 const plus = makeElement('button', '', myConsole);
