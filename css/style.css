@@ -43,9 +43,7 @@ body {
   background-color: black;
   color: white;
   border-radius: 5px;
-
-
-  }
+}
 
 #minus {
   width: 20%;
@@ -64,11 +62,18 @@ body {
 }
 
 .menu {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 20px;
   border-style: solid;
   border-color: red;
 
+}
+
+.menu > div > button {
+  background-color: rgba(213, 217, 217, 0.366);
+  width: 50px;
 }
 
 .listElm {

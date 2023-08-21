@@ -95,12 +95,20 @@ const spanMinus = makeElement('span', '-', minus);
 const monitor = makeElement('div', '', myConsole);
 monitor.id = 'monitor';
 const menu = makeElement('div', '', monitor);
-
 menu.classList.add('menu');
+
 const number = makeElement('span', 0, monitor);
 
-menu.classList.add('space');
-const space = makeElement('span', '', monitor);
+const space = makeElement('div', '', monitor);
+space.classList.add('space');
+
+for (let i = 0; i < 2; i++) {
+  makeElement('div', '', menu);;
+};
+
+//imposto btnDeleteMemos
+btnDeleteMemos = makeElement('button', 'DEL', menu.children[0]);
+btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
 
 /*imposto il bottone piu'*/
 const plus = makeElement('button', '', myConsole);
@@ -113,22 +121,18 @@ plus.addEventListener('mousedown', () => changeValue(1, number));
 minus.addEventListener('mousedown', () => changeValue(-1, number));
 
 
-//imposto btnDeleteMemos
-btnDeleteMemos = makeElement('button', 'DEL', body.children[1]);
-btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
-
 //imposto la lista dei memos
 listMemo = makeElement('div', '', body.children[2]);
 listMemo.classList.add('list');
 listMemo.id = listMemo;
 
 //imposto il bottone salva memo
-btnSaveMemo = makeElement('button', 'SAVE THIS', body.children[3]);
+btnSaveMemo = makeElement('button', 'SAVE THIS', menu.children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 
 //imposto il menuButtonSetupMaking
-menuButtonSetupMaking = makeElement('div', '', body.children[4]);
+menuButtonSetupMaking = makeElement('div', '', space);
 menuButtonSetupMaking.classList.add('menuButtonSetupMaking');
 menuButtonSetupMaking.hidden = true;
 
@@ -144,7 +148,7 @@ btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
 btnMakeButton.id = 'btnMakeButton';
 
 //imposto il tasto per aprire il menu per il customBtn
-btnOpenSetup = makeElement('button', 'Make your own button!', body.children[5]);
+btnOpenSetup = makeElement('button', 'Make your own button!', menu.children[1]);
 btnOpenSetup.addEventListener('click', () => {
 
   value.value = +number.innerText;//il valore e' il numero nel myConsole di default
