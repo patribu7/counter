@@ -50,12 +50,16 @@ function changeValue(value, element) {
       element.innerText = +element.innerText + value;
 };
 
-function show(element) {
-  element.hidden = false;
-};
-
-function hide(element) {
-  element.hidden = true;
+function switchShow(element, state1, state2) {
+    var currentState = element.style.display;
+  switch (currentState) {
+    case state1:
+    element.style.display = state2;
+    break;
+    case state2:
+      element.style.display = state1;
+      break;
+    }
 };
 
 function changeBtnApparence(btn, text, height) {
@@ -106,13 +110,28 @@ for (let i = 0; i < 2; i++) {
   makeElement('div', '', menu);;
 };
 
+
+//imposto la lista dei memos
+listMemo = makeElement('div', '', space);
+listMemo.classList.add('list');
+listMemo.style.display = 'none';
+
+//imposto il customKeyboard
+const customKeyboard = makeElement('div', '', space);
+customKeyboard.classList.add('list', 'customKeyboard');
+customKeyboard.style.display = 'none';
+
 //imposto il bottone salva memo
 btnSaveMemo = makeElement('button', 'SAVE', menu.children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 //imposto btnDeleteMemos
-btnDeleteMemos = makeElement('button', 'DEL', menu.children[0]);
+const btnDeleteMemos = makeElement('button', 'DEL', menu.children[0]);
 btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
+
+//imposto btnShowMemos
+const btnShowMemos = makeElement('button', 'show memo', menu.children[0]);
+btnShowMemos.addEventListener('click', () => switchShow(listMemo, 'none', 'flex'));
 
 /*imposto il bottone piu'*/
 const plus = makeElement('button', '', myConsole);
@@ -124,16 +143,10 @@ const spanPlus = makeElement('span', '+', plus);
 plus.addEventListener('mousedown', () => changeValue(1, number));
 minus.addEventListener('mousedown', () => changeValue(-1, number));
 
-
-//imposto la lista dei memos
-listMemo = makeElement('div', '', space);
-listMemo.classList.add('list');
-listMemo.id = listMemo;
-
 //imposto il menuButtonSetupMaking
-menuButtonSetupMaking = makeElement('div', '', space);
+const menuButtonSetupMaking = makeElement('div', '', space);
 menuButtonSetupMaking.classList.add('menuButtonSetupMaking');
-menuButtonSetupMaking.hidden = true;
+menuButtonSetupMaking.style.display = 'none';
 
 label = makeElement('label', 'insert a value for your button', menuButtonSetupMaking);
 label.for = 'value';
@@ -149,16 +162,19 @@ btnMakeButton.id = 'btnMakeButton';
 //imposto il tasto per aprire il menu per il customBtn
 btnOpenSetup = makeElement('button', 'Make your own button!', menu.children[1]);
 btnOpenSetup.addEventListener('click', () => {
-
+  
   value.value = +number.innerText;//il valore e' il numero nel myConsole di default
-  if (menuButtonSetupMaking.hidden) {
-    show(menuButtonSetupMaking);
-    changeBtnApparence(btnOpenSetup, '^', '30px');
-    insertValue.select(); //mette subito il focus sulla casella per inserire il valore
-
-  } else {
-    hide(menuButtonSetupMaking);
+  switch (menuButtonSetupMaking.style.display) {
+    case 'none' :
+      menuButtonSetupMaking.style.display = 'block';
+      changeBtnApparence(btnOpenSetup, '^', '30px');
+      insertValue.select(); //mette subito il focus sulla casella per inserire il valore
+      break;
+    
+    case 'block':
+    menuButtonSetupMaking.style.display = 'none';
     changeBtnApparence(btnOpenSetup,'Make your own button!', '' )
+    break;
   };
 });
 
@@ -166,9 +182,12 @@ btnMakeButton.addEventListener('click', () => {
   makeCustomButton();
 });
 
-//imposto il customKeyboard
-customKeyboard = makeElement('div', '', space);
-customKeyboard.classList.add('list', 'customKeyboard');
+//imposto il tasto btnShowKeyboard
+const btnShowKeyboard = makeElement('button', 'show keyboard', menu.children[1]);
+btnShowKeyboard.addEventListener('click', () => {switchShow(customKeyboard, 'none', 'flex')})
+
+// listMemo.style.display = 'none';
+// customKeyboard.style.display = 'none'
 
 //imposto il tasto RESET
 // btnReset = makeElement('button', 'RESET', body.children[7]);
