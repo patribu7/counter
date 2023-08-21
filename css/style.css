@@ -131,7 +131,7 @@ input[type="number"], #btnMakeButton {
   align-items: center;
   border-style: solid;
   border-radius: 6px;
-  width: 40px;
+  width: fit-content;
   height: 40px;
   font-size: 20pt;
 

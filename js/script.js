@@ -115,13 +115,11 @@ const spanMinus = makeElement('span', '-', minus);
 const monitor = makeElement('div', '', myConsole);
 monitor.id = 'monitor';
 
-const menu = makeElement('div', '', monitor);
-menu.classList.add('menu');
+const menu = makeElement('div', '', monitor, 'menu');
 
 const number = makeElement('span', 0, monitor);
 
-const space = makeElement('div', '', monitor);
-space.classList.add('space');
+const space = makeElement('div', '', monitor, 'space');
 
 const menuList = ['Memo', 'Custom Button'];
 const numberOfdropdownContent = 4;
@@ -173,9 +171,9 @@ const btnShowMemos = makeElement('button', 'SHOW memo',menu.children[0].children
 btnShowMemos.addEventListener('click', () => switchShow(listMemo, 'none', 'flex'));
 
 /*imposto il bottone piu'*/
-const plus = makeElement('button', '', myConsole);
+const plus = makeElement('button', '', myConsole, 'positive');
 plus.id = 'plus';
-plus.classList.add('positive');
+
 const spanPlus = makeElement('span', '+', plus);
 
 //assegno la funzione incremento e decremento di + e -
@@ -183,11 +181,10 @@ plus.addEventListener('mousedown', () => changeValue(1, number));
 minus.addEventListener('mousedown', () => changeValue(-1, number));
 
 //imposto il menuButtonSetupMaking
-const menuButtonSetupMaking = makeElement('div', '', space);
-menuButtonSetupMaking.classList.add('menuButtonSetupMaking');
+const menuButtonSetupMaking = makeElement('div', '', space, 'menuButtonSetupMaking');
 menuButtonSetupMaking.style.display = 'none';
 
-label = makeElement('label', 'insert a value for your button', menuButtonSetupMaking);
+const label = makeElement('label', 'insert a value for your button', menuButtonSetupMaking);
 label.for = 'value';
 
 const insertValue = makeElement('input', '', menuButtonSetupMaking);
