@@ -19,7 +19,7 @@ function makeElement(type, text, parent, cls='') {
   element.innerText = text;
   parent.appendChild(element);
 
-  /*se e' un div di una lista assegna la classe e ElmList e controlla il limite degli Elm*/
+  /*se e' un div di una lista assegna la classe e ElmList*/
   if (parent.classList.contains('list')) {
     element.classList.add('listElm');
     // limitElmTo(10, parent);
@@ -28,6 +28,8 @@ function makeElement(type, text, parent, cls='') {
     if (type === 'button') {
       element.addEventListener('click', () => changeValue(+text, number))
     };
+  
+    element.addEventListener("contextmenu", (e) => {e.preventDefault(), element.classList.add('to-delete')});
   };
 
   return element
@@ -120,8 +122,7 @@ for (let el of menuList) {
 };
 
 //imposto la lista dei memos
-listMemo = makeElement('div', '', space);
-listMemo.classList.add('list');
+const listMemo = makeElement('div', '', space, 'list');
 listMemo.style.display = 'none';
 
 //imposto il customKeyboard
@@ -130,7 +131,7 @@ customKeyboard.classList.add('list', 'customKeyboard');
 customKeyboard.style.display = 'none';
 
 //imposto il bottone salva memo
-btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
+const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 //imposto btnDeleteMemos
