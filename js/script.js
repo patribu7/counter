@@ -11,9 +11,11 @@ function limitElmTo(num, list) {
   };
 };
 
-function makeElement(type, text, parent) {
+function makeElement(type, text, parent, cls='') {
   const element = document.createElement(type);
-
+  if (cls !== '') {
+    element.classList.add(cls);
+  }
   element.innerText = text;
   parent.appendChild(element);
 
@@ -47,7 +49,7 @@ function addClassColor(element) {
 };
 
 function changeValue(value, element) {
-      element.innerText = +element.innerText + value;
+      element.innerText = + element.innerText + value;
 };
 
 function switchShow(element, state1, state2) {
@@ -97,6 +99,7 @@ const spanMinus = makeElement('span', '-', minus);
 /*imposto il box del contatore*/
 const monitor = makeElement('div', '', myConsole);
 monitor.id = 'monitor';
+
 const menu = makeElement('div', '', monitor);
 menu.classList.add('menu');
 
@@ -105,10 +108,16 @@ const number = makeElement('span', 0, monitor);
 const space = makeElement('div', '', monitor);
 space.classList.add('space');
 
-for (let i = 0; i < 2; i++) {
-  makeElement('div', '', menu);;
-};
+const menuList = ['Memo', 'Custom Button'];
+const numberOfdropdownContent = 4;
+for (let el of menuList) {
+  let dropdown = makeElement('div', '', menu,'dropdown');
+  makeElement('div', el, dropdown, 'dropbtn' );
+  let dropdownContent = makeElement('div', '', dropdown, 'dropdown-content');
+  for (let i = 0; i < numberOfdropdownContent; i++)
+    dropdownElement = makeElement('div', '', dropdownContent);
 
+};
 
 //imposto la lista dei memos
 listMemo = makeElement('div', '', space);
@@ -121,15 +130,15 @@ customKeyboard.classList.add('list', 'customKeyboard');
 customKeyboard.style.display = 'none';
 
 //imposto il bottone salva memo
-btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0]);
+btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 //imposto btnDeleteMemos
-const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0]);
+const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[1]);
 btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
 
 //imposto btnShowMemos
-const btnShowMemos = makeElement('button', 'SHOW memo', menu.children[0]);
+const btnShowMemos = makeElement('button', 'SHOW memo',menu.children[0].children[1].children[2]);
 btnShowMemos.addEventListener('click', () => switchShow(listMemo, 'none', 'flex'));
 
 /*imposto il bottone piu'*/
@@ -159,7 +168,7 @@ const btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
 btnMakeButton.id = 'btnMakeButton';
 
 //imposto il tasto per aprire il menu per il customBtn
-const btnOpenSetup = makeElement('button', 'MAKE button', menu.children[1]);
+const btnOpenSetup = makeElement('button', 'MAKE button', menu.children[1].children[1].children[0]);
 btnOpenSetup.addEventListener('click', () => {
   
   value.value = +number.innerText;//il valore e' il numero nel myConsole di default
@@ -182,11 +191,8 @@ btnMakeButton.addEventListener('click', () => {
 });
 
 //imposto il tasto btnShowKeyboard
-const btnShowKeyboard = makeElement('button', 'SHOW keyboard', menu.children[1]);
+const btnShowKeyboard = makeElement('button', 'SHOW keyboard', menu.children[1].children[1].children[1]);
 btnShowKeyboard.addEventListener('click', () => {switchShow(customKeyboard, 'none', 'flex')})
-
-// listMemo.style.display = 'none';
-// customKeyboard.style.display = 'none'
 
 //imposto il tasto RESET
 // btnReset = makeElement('button', 'RESET', body.children[7]);

@@ -22,10 +22,6 @@ body {
 
 }
 
-#monitor, #minus, #plus {
-
-}
-
 #monitor {
   display: flex;
   background-color: black;
@@ -77,14 +73,39 @@ body {
   height: 40px;
 }
 
-.menu > div {
-  height: inherit;
-}
 
-.menu > div > button {
+.dropbtn {
   background-color: rgba(213, 217, 217, 0.366);
+  color: rgb(181, 185, 185);
+  padding: 16px;
+  font-size: 16px;
   width: 66px;
   height: inherit;
+  text-align: center;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  z-index: 1;
+}
+
+.dropdown-content button {
+  color: rgb(179, 179, 179);
+  background-color: rgba(163, 164, 164, 0.366);
+  padding: 5px;
+  display: block;
+  width: 100px;
+}
+
+.dropdown-content button:hover {
+  background-color: rgba(163, 164, 164, 0.605);
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 input[type="number"], #btnMakeButton {
