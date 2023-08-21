@@ -5,6 +5,12 @@ let limitCharInNumbermyConsole = 6;
 
 //---------------funzioni---------------------
 
+function limitElmTo(num, list) {
+  if ( list.childElementCount > num) {
+    list.removeChild(list.getElementsByClassName('listElm')[0]);
+  };
+};
+
 function makeElement(type, text, parent) {
   const element = document.createElement(type);
 
@@ -14,7 +20,7 @@ function makeElement(type, text, parent) {
   /*se e' un div di una lista assegna la classe e ElmList e controlla il limite degli Elm*/
   if (parent.classList.contains('list')) {
     element.classList.add('listElm');
-    limitElmTo(10, parent);
+    // limitElmTo(10, parent);
     addClassColor(element);
 
     if (type === 'button') {
@@ -25,11 +31,6 @@ function makeElement(type, text, parent) {
   return element
 };
 
-function limitElmTo(num, list) {
-  if ( list.childElementCount > num) {
-    list.removeChild(list.getElementsByClassName('listElm')[0]);
-  };
-};
 
 /*assegna una classe che cambia il colore a seconda se il testo mostrato e' positivo, negativo, oppure zero*/
 function addClassColor(element) {
@@ -65,7 +66,6 @@ function changeBtnApparence(btn, text, height) {
 
 function confermDeleteMemos() {
   listMemo.childNodes.forEach((item, i) => {
-    item.classList.add('toDelete');
   });
   let confirmAction = confirm('Are you sure to delete all your memo?');
   if (confirmAction) {
@@ -106,6 +106,10 @@ for (let i = 0; i < 2; i++) {
   makeElement('div', '', menu);;
 };
 
+//imposto il bottone salva memo
+btnSaveMemo = makeElement('button', 'SAVE', menu.children[0]);
+btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
+
 //imposto btnDeleteMemos
 btnDeleteMemos = makeElement('button', 'DEL', menu.children[0]);
 btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
@@ -122,14 +126,9 @@ minus.addEventListener('mousedown', () => changeValue(-1, number));
 
 
 //imposto la lista dei memos
-listMemo = makeElement('div', '', body.children[2]);
+listMemo = makeElement('div', '', space);
 listMemo.classList.add('list');
 listMemo.id = listMemo;
-
-//imposto il bottone salva memo
-btnSaveMemo = makeElement('button', 'SAVE THIS', menu.children[0]);
-btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
-
 
 //imposto il menuButtonSetupMaking
 menuButtonSetupMaking = makeElement('div', '', space);
@@ -168,10 +167,10 @@ btnMakeButton.addEventListener('click', () => {
 });
 
 //imposto il customKeyboard
-customKeyboard = makeElement('div', '', body.children[6]);
+customKeyboard = makeElement('div', '', space);
 customKeyboard.classList.add('list', 'customKeyboard');
 
 //imposto il tasto RESET
-btnReset = makeElement('button', 'RESET', body.children[7]);
-btnReset.classList.add('reset');
-btnReset.addEventListener('click', () => location.reload());
+// btnReset = makeElement('button', 'RESET', body.children[7]);
+// btnReset.classList.add('reset');
+// btnReset.addEventListener('click', () => location.reload());
