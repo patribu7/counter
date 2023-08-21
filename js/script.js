@@ -27,9 +27,20 @@ function makeElement(type, text, parent, cls='') {
 
     if (type === 'button') {
       element.addEventListener('click', () => changeValue(+text, number))
+      element.classList.add('btnCustom')
+    } else {
+      element.classList.add('elmMemo')
     };
-  
-    element.addEventListener("contextmenu", (e) => {e.preventDefault(), element.classList.add('to-delete')});
+
+    element.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      if (element.classList.contains('to-delete')) {
+        element.classList.remove('to-delete')
+      } else {
+        element.classList.add('to-delete')
+      }
+
+    });
   };
 
   return element
@@ -66,14 +77,15 @@ function switchShow(element, state1, state2) {
     }
 };
 
-function confermDeleteMemos() {
-  listMemo.childNodes.forEach((item, i) => {
-  });
-  let confirmAction = confirm('Are you sure to delete all your memo?');
+function confirmDelete(context) {
+  let confirmAction = confirm('Are you sure to delete all' + context + '?');
+  return confirmAction
+}
+
+function deleteAll(clsElm, confirmAction) {
   if (confirmAction) {
-      listMemo.innerHTML = '';
-  }
-};
+    document.querySelectorAll(clsElm).forEach(el => el.remove());
+}};
 
 function makeCustomButton() {
   /*si lascia vuoto valore il valore e' 0*/
@@ -88,14 +100,15 @@ function changeApparence(element, text, height) {
   element.style.height = height;
 
 };
+
+
 //---------------oggetti---------------------
 
 const body = document.getElementsByTagName('body')[0];
 
 /*imposto il bottone meno*/
-const minus = makeElement('button', '', myConsole);
+const minus = makeElement('button', '', myConsole, 'negative');
 minus.id = 'minus';
-minus.classList.add('negative');
 const spanMinus = makeElement('span', '-', minus);
 
 /*imposto il box del contatore*/
@@ -122,11 +135,11 @@ for (let el of menuList) {
 };
 
 //imposto la lista dei memos
-const listMemo = makeElement('div', '', space, 'list');
+var listMemo = makeElement('div', '', space, 'list');
 listMemo.style.display = 'none';
 
 //imposto il customKeyboard
-const customKeyboard = makeElement('div', '', space);
+var customKeyboard = makeElement('div', '', space);
 customKeyboard.classList.add('list', 'customKeyboard');
 customKeyboard.style.display = 'none';
 
@@ -135,11 +148,28 @@ const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 //imposto btnDeleteMemos
-const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[1]);
-btnDeleteMemos.addEventListener('click', () => confermDeleteMemos());
+const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[2]);
+btnDeleteMemos.addEventListener('click', () => {
+  var confirm = confirmDelete(' memo');
+  deleteAll('.elmMemo', confirm)
+});
+
+//imposto btn delete memo selected
+const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[0].children[1].children[3]);
+btnDeleteSelected.addEventListener('click', () => {
+  var confirm = confirmDelete(' selected');
+  deleteAll('.to-delete', confirm)
+});
+
+//btn delete custom buttons
+const btnDeleteCustomButtons = makeElement('button', 'DELETE ', menu.children[1].children[1].children[2])
+btnDeleteCustomButtons.addEventListener('click', () => {
+  var confirm = confirmDelete(' custom buttons');
+  deleteAll('.btnCustom', confirm)
+});
 
 //imposto btnShowMemos
-const btnShowMemos = makeElement('button', 'SHOW memo',menu.children[0].children[1].children[2]);
+const btnShowMemos = makeElement('button', 'SHOW memo',menu.children[0].children[1].children[1]);
 btnShowMemos.addEventListener('click', () => switchShow(listMemo, 'none', 'flex'));
 
 /*imposto il bottone piu'*/
@@ -166,7 +196,6 @@ insertValue.value = '';
 insertValue.id = 'value';
 
 const btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
-btnMakeButton.id = 'btnMakeButton';
 
 //imposto il tasto per aprire il menu per il customBtn
 const btnOpenSetup = makeElement('button', 'MAKE button', menu.children[1].children[1].children[0]);
