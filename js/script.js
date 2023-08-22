@@ -144,14 +144,12 @@ for (let i = 0; i<3; i++ ) {
 };
 
 //dorpdwon menu
-const menuList = ['Memo', 'Custom Button'];
-let numberOfdropdownContent = 4;
+const menuList = ['Memo','DEL Select', 'Custom Button'];
 for (let el of menuList) {
   let dropdown = makeElement('div', '', menu,'dropdown');
   makeElement('div', el, dropdown, 'dropbtn' );
   let dropdownContent = makeElement('div', '', dropdown, 'dropdown-content');
-  for (let i = 0; i < numberOfdropdownContent; i++)
-    dropdownElement = makeElement('div', '', dropdownContent);
+  dropdownElement = makeElement('div', '', dropdownContent);
 
 };
 
@@ -167,52 +165,73 @@ customKeyboard.parentElement.style.display = 'none';
 const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
-//bottone cancella tutti i memo
-const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[2]);
-btnDeleteMemos.addEventListener('click', () => {
-  var confirm = confirmDelete(' memo');
-  deleteAll('.elmMemo', confirm)
-});
-
-//bottone cancella tutti i bottoni custom
-const btnDeleteCustomButtons = makeElement('button', 'DELETE keyboard', menu.children[1].children[1].children[2])
-btnDeleteCustomButtons.addEventListener('click', () => {
-  var confirm = confirmDelete(' custom buttons');
-  deleteAll('.btnCustom', confirm)
-});
-
-//bottone cancella i memo/button selezionati
-const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[0].children[1].children[3]);
-btnDeleteSelected.addEventListener('click', () => {
-  var confirm = confirmDelete(' selected');
-  deleteAll('.to-delete', confirm)
-});
-
 //per mostrare i memo
 const textBtnShowMemos = 'SHOW memo';
-const btnShowMemos = makeElement('button', textBtnShowMemos, menu.children[0].children[1].children[1]);
+const btnShowMemos = makeElement('button', textBtnShowMemos, menu.children[0].children[1].children[0]);
 btnShowMemos.addEventListener('click', () => {
   switchShow(listMemo.parentElement, 'none', 'flex');
   switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
 });
 
-//per mostrare i bottoni custom
-const textBtnShowKeyboard = 'SHOW keyboard';
-const btnShowKeyboard = makeElement('button', textBtnShowKeyboard, menu.children[1].children[1].children[1]);
-btnShowKeyboard.addEventListener('click', () => {
-  switchShow(customKeyboard.parentElement, 'none', 'flex');
-  switchApparence(btnShowKeyboard, textBtnShowKeyboard, textBtnClose)
+
+//bottone cancella tutti i memo
+const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[0]);
+btnDeleteMemos.addEventListener('click', () => {
+  var confirm = confirmDelete(' memo');
+  deleteAll('.elmMemo', confirm)
+});
+
+//bottone cancella i memo/button selezionati
+const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[1].children[1].children[0]);
+btnDeleteSelected.addEventListener('click', () => {
+  var confirm = confirmDelete(' selected');
+  deleteAll('.to-delete', confirm)
+});
+
+//bottone cancella i memo/button positivi
+const btnDeletePositive = makeElement('button', 'DELETE POSITIVE', menu.children[1].children[1].children[0]);
+btnDeletePositive.addEventListener('click', () => {
+  var confirm = confirmDelete(' positive');
+  deleteAll('.positive', confirm)
+});
+
+//bottone cancella i memo/button negativi
+const btnDeleteNegative = makeElement('button', 'DELETE NEGATIVE', menu.children[1].children[1].children[0]);
+btnDeleteNegative.addEventListener('click', () => {
+  var confirm = confirmDelete(' negative');
+  deleteAll('.negative', confirm)
+});
+
+//bottone cancella i memo/button zero
+const btnDeleteZero = makeElement('button', 'DELETE ZERO', menu.children[1].children[1].children[0]);
+btnDeleteZero.addEventListener('click', () => {
+  var confirm = confirmDelete(' zero');
+  deleteAll('.zero', confirm)
 });
 
 //per aprire il menu per il fare il bottone custom
 const textBtnOpenSetup = 'NEW BUTTON';
-
-const btnOpenSetup = makeElement('button', textBtnOpenSetup, menu.children[1].children[1].children[0]);
+const btnOpenSetup = makeElement('button', textBtnOpenSetup, menu.children[2].children[1].children[0]);
 btnOpenSetup.addEventListener('click', () => {
   value.value = +number.innerText; //il valore e' il numero nel myConsole di default
   switchApparence(btnOpenSetup, textBtnOpenSetup, textBtnClose);
   switchShow(menuButtonSetupMaking.parentElement, 'flex', 'none');
   insertValue.select(); //mette subito il focus sulla casella per inserire il valore
+});
+
+//per mostrare i bottoni custom
+const textBtnShowKeyboard = 'SHOW keyboard';
+const btnShowKeyboard = makeElement('button', textBtnShowKeyboard, menu.children[2].children[1].children[0]);
+btnShowKeyboard.addEventListener('click', () => {
+  switchShow(customKeyboard.parentElement, 'none', 'flex');
+  switchApparence(btnShowKeyboard, textBtnShowKeyboard, textBtnClose)
+});
+
+//bottone cancella tutti i bottoni custom
+const btnDeleteCustomButtons = makeElement('button', 'DELETE keyboard', menu.children[2].children[1].children[0])
+btnDeleteCustomButtons.addEventListener('click', () => {
+  var confirm = confirmDelete(' custom buttons');
+  deleteAll('.btnCustom', confirm)
 });
   
 //il menu per fare il bottone custom
