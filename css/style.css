@@ -132,6 +132,7 @@ input[type="number"], #btnMakeButton {
   border-style: solid;
   border-radius: 6px;
   width: fit-content;
+  padding: 0 10px 0 10px;
   height: 40px;
   font-size: 20pt;
 
@@ -167,4 +168,18 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.boxSpace {
+  justify-content: end;
+  align-items: center;
+}
+
+.close {
+  background-color: rgba(163, 164, 164, 0.2);
+  color: white;
+  margin-left: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 20px;
 }
