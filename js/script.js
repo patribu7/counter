@@ -66,7 +66,7 @@ function changeValue(value, element) {
 };
 
 function switchShow(element, state1, state2) {
-    var currentState = element.style.display;
+  var currentState = element.style.display;
   switch (currentState) {
     case state1:
       element.style.display = state2;
@@ -147,11 +147,15 @@ for (let i = 0; i<3; i++ ) {
 const menuList = ['Memo','DEL Select', 'Custom Button'];
 for (let el of menuList) {
   let dropdown = makeElement('div', '', menu,'dropdown');
+  
   makeElement('div', el, dropdown, 'dropbtn' );
   let dropdownContent = makeElement('div', '', dropdown, 'dropdown-content');
+  dropdownContent.style.display = 'none';
   dropdownElement = makeElement('div', '', dropdownContent);
-
+  dropdown.addEventListener('touchstart', () => switchShow(dropdownContent, 'block', 'none'));
 };
+
+//  switchShow(dropdownContent, 'block', 'none')
 
 //lista dei memos
 let listMemo = makeElement('div', '', space.children[0], 'list');
@@ -265,6 +269,8 @@ function buttonClose(parent, primaryBtn, textPrimaryBtn) {
 buttonClose(menuButtonSetupMaking.parentElement, btnOpenSetup, textBtnOpenSetup);
 buttonClose(listMemo.parentElement, btnShowMemos, textBtnShowMemos);
 buttonClose(customKeyboard.parentElement, btnShowKeyboard, textBtnShowKeyboard);
+
+//per i device accedono ai menu
 
 //imposto il tasto RESET
 // btnReset = makeElement('button', 'RESET', body.children[7]);

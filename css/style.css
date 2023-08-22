@@ -106,7 +106,7 @@ body {
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: block !important
 }
 
 input[type="number"], #btnMakeButton {
