@@ -146,13 +146,12 @@ for (let i = 0; i<3; i++ ) {
 //dorpdwon menu
 const menuList = ['Memo','DEL Select', 'Custom Button'];
 for (let el of menuList) {
-  let dropdown = makeElement('div', '', menu,'dropdown');
-  
-  makeElement('div', el, dropdown, 'dropbtn' );
+  let dropdown = makeElement('div', '', menu,'dropdown'); 
+  let labelMenu = makeElement('div', el, dropdown, 'dropbtn' );
   let dropdownContent = makeElement('div', '', dropdown, 'dropdown-content');
   dropdownContent.style.display = 'none';
   dropdownElement = makeElement('div', '', dropdownContent);
-  dropdown.addEventListener('touchstart', () => switchShow(dropdownContent, 'block', 'none'));
+  labelMenu.addEventListener('touchstart', () => switchShow(dropdownContent, 'block', 'none'));
 };
 
 //  switchShow(dropdownContent, 'block', 'none')
