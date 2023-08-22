@@ -175,7 +175,7 @@ btnDeleteMemos.addEventListener('click', () => {
 });
 
 //bottone cancella tutti i bottoni custom
-const btnDeleteCustomButtons = makeElement('button', 'DELETE ', menu.children[1].children[1].children[2])
+const btnDeleteCustomButtons = makeElement('button', 'DELETE keyboard', menu.children[1].children[1].children[2])
 btnDeleteCustomButtons.addEventListener('click', () => {
   var confirm = confirmDelete(' custom buttons');
   deleteAll('.btnCustom', confirm)
@@ -205,7 +205,7 @@ btnShowKeyboard.addEventListener('click', () => {
 });
 
 //per aprire il menu per il fare il bottone custom
-const textBtnOpenSetup = 'New button';
+const textBtnOpenSetup = 'NEW BUTTON';
 
 const btnOpenSetup = makeElement('button', textBtnOpenSetup, menu.children[1].children[1].children[0]);
 btnOpenSetup.addEventListener('click', () => {
