@@ -133,6 +133,7 @@ input[type="number"], #btnMakeButton {
   border-radius: 6px;
   width: fit-content;
   padding: 0 10px 0 10px;
+  margin-left: 10px;
   height: 40px;
   font-size: 20pt;
 
@@ -157,6 +158,13 @@ input[type="number"], #btnMakeButton {
   background-color: black;
 }
 
+.btnCustom {
+  box-shadow: rgb(202, 204, 206) 3px 3px 6px 0px inset, rgba(60, 58, 58, 0.9) -3px -3px 6px 1px inset;
+}
+
+.elmMemo {
+
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
