@@ -69,13 +69,24 @@ function switchShow(element, state1, state2) {
     var currentState = element.style.display;
   switch (currentState) {
     case state1:
-    element.style.display = state2;
-    break;
+      element.style.display = state2;
+      break;
     case state2:
       element.style.display = state1;
       break;
     }
 };
+
+function switchApparence(element, text1, text2) {
+  var currentText = element.innerHTML;
+  switch (currentText) {
+    case text1:
+      element.innerHTML = text2;
+      break;
+    case text2:
+      element.innerHTML = text1;
+      break;
+}};
 
 function confirmDelete(context) {
   let confirmAction = confirm('Are you sure to delete all' + context + '?');
@@ -95,13 +106,9 @@ function makeCustomButton() {
   makeElement('button', value.value, customKeyboard);
 };
 
-function changeApparence(element, text, height) {
-  element.innerHTML = text;
-  element.style.height = height;
-
-};
 
 //---------------oggetti---------------------
+const textBtnClose = '^';
 
 const body = document.getElementsByTagName('body')[0];
 
@@ -114,18 +121,31 @@ const spanMinus = makeElement('span', '-', minus);
 const monitor = makeElement('div', '', myConsole);
 monitor.id = 'monitor';
 
+/*imposto il bottone piu'*/
+const plus = makeElement('button', '', myConsole, 'positive');
+plus.id = 'plus';
+const spanPlus = makeElement('span', '+', plus);
+
+
+//assegno la funzione incremento e decremento di + e -
+plus.addEventListener('mousedown', () => changeValue(1, number));
+minus.addEventListener('mousedown', () => changeValue(-1, number));
+
+//elementi del monitor
 const menu = makeElement('div', '', monitor, 'menu');
 
 const number = makeElement('span', 0, monitor);
 
 const space = makeElement('div', '', monitor, 'space');
 
+//tre children per l'elemento space
 for (let i = 0; i<3; i++ ) {
   makeElement('div', '', space, 'boxSpace')
-}
+};
 
+//dorpdwon menu
 const menuList = ['Memo', 'Custom Button'];
-const numberOfdropdownContent = 4;
+let numberOfdropdownContent = 4;
 for (let el of menuList) {
   let dropdown = makeElement('div', '', menu,'dropdown');
   makeElement('div', el, dropdown, 'dropbtn' );
@@ -135,54 +155,67 @@ for (let el of menuList) {
 
 };
 
-//imposto la lista dei memos
-var listMemo = makeElement('div', '', space.children[0], 'list');
+//lista dei memos
+let listMemo = makeElement('div', '', space.children[0], 'list');
 listMemo.parentElement.style.display = 'none';
 
-//imposto il customKeyboard
-var customKeyboard = makeElement('div', '', space.children[1], 'list');
+//lista dei bottoni custom
+let customKeyboard = makeElement('div', '', space.children[1], 'list');
 customKeyboard.parentElement.style.display = 'none';
 
-//imposto il bottone salva memo
+//bottone salva memo
 const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
 btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
-//imposto btnDeleteMemos
+//bottone cancella tutti i memo
 const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[2]);
 btnDeleteMemos.addEventListener('click', () => {
   var confirm = confirmDelete(' memo');
   deleteAll('.elmMemo', confirm)
 });
 
-//imposto btn delete memo selected
-const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[0].children[1].children[3]);
-btnDeleteSelected.addEventListener('click', () => {
-  var confirm = confirmDelete(' selected');
-  deleteAll('.to-delete', confirm)
-});
-
-//btn delete custom buttons
+//bottone cancella tutti i bottoni custom
 const btnDeleteCustomButtons = makeElement('button', 'DELETE ', menu.children[1].children[1].children[2])
 btnDeleteCustomButtons.addEventListener('click', () => {
   var confirm = confirmDelete(' custom buttons');
   deleteAll('.btnCustom', confirm)
 });
 
-//imposto btnShowMemos
-const btnShowMemos = makeElement('button', 'SHOW memo',menu.children[0].children[1].children[1]);
-btnShowMemos.addEventListener('click', () => switchShow(listMemo.parentElement, 'none', 'flex'));
+//bottone cancella i memo/button selezionati
+const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[0].children[1].children[3]);
+btnDeleteSelected.addEventListener('click', () => {
+  var confirm = confirmDelete(' selected');
+  deleteAll('.to-delete', confirm)
+});
 
-/*imposto il bottone piu'*/
-const plus = makeElement('button', '', myConsole, 'positive');
-plus.id = 'plus';
+//per mostrare i memo
+const textBtnShowMemos = 'SHOW memo';
+const btnShowMemos = makeElement('button', textBtnShowMemos, menu.children[0].children[1].children[1]);
+btnShowMemos.addEventListener('click', () => {
+  switchShow(listMemo.parentElement, 'none', 'flex');
+  switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
+});
 
-const spanPlus = makeElement('span', '+', plus);
+//per mostrare i bottoni custom
+const textBtnShowKeyboard = 'SHOW keyboard';
+const btnShowKeyboard = makeElement('button', textBtnShowKeyboard, menu.children[1].children[1].children[1]);
+btnShowKeyboard.addEventListener('click', () => {
+  switchShow(customKeyboard.parentElement, 'none', 'flex');
+  switchApparence(btnShowKeyboard, textBtnShowKeyboard, textBtnClose)
+});
 
-//assegno la funzione incremento e decremento di + e -
-plus.addEventListener('mousedown', () => changeValue(1, number));
-minus.addEventListener('mousedown', () => changeValue(-1, number));
+//per aprire il menu per il fare il bottone custom
+const textBtnOpenSetup = 'New button';
 
-//imposto il menuButtonSetupMaking
+const btnOpenSetup = makeElement('button', textBtnOpenSetup, menu.children[1].children[1].children[0]);
+btnOpenSetup.addEventListener('click', () => {
+  value.value = +number.innerText; //il valore e' il numero nel myConsole di default
+  switchApparence(btnOpenSetup, textBtnOpenSetup, textBtnClose);
+  switchShow(menuButtonSetupMaking.parentElement, 'flex', 'none');
+  insertValue.select(); //mette subito il focus sulla casella per inserire il valore
+});
+  
+//il menu per fare il bottone custom
 const menuButtonSetupMaking = makeElement('div', '', space.children[2], 'menuButtonSetupMaking');
 menuButtonSetupMaking.parentElement.style.display = 'none';
 
@@ -194,50 +227,25 @@ insertValue.type = 'number';
 insertValue.value = '';
 insertValue.id = 'value';
 
+//bottone per fare il bottone custom
 const btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
-
-//imposto il tasto per aprire il menu per il customBtn
-const btnOpenSetupText = 'New button'
-
-const btnOpenSetup = makeElement('button', btnOpenSetupText, menu.children[1].children[1].children[0]);
-btnOpenSetup.addEventListener('click', () => {
-  
-  value.value = +number.innerText;//il valore e' il numero nel myConsole di default
-  switch (menuButtonSetupMaking.parentElement.style.display) {
-    case 'none' :
-      menuButtonSetupMaking.parentElement.style.display = 'flex';
-      changeApparence(btnOpenSetup, '<p>^</p><p><br/></p>')
-      insertValue.select(); //mette subito il focus sulla casella per inserire il valore
-      break;
-    
-    case 'flex':
-    menuButtonSetupMaking.parentElement.style.display = 'none';
-    changeApparence(btnOpenSetup, btnOpenSetupText)
-    break;
-  };
-});
-
 btnMakeButton.addEventListener('click', () => {
   makeCustomButton();
   customKeyboard.parentElement.style.display = 'flex';
 });
 
-//imposto il tasto btnShowKeyboard
-const btnShowKeyboard = makeElement('button', 'SHOW keyboard', menu.children[1].children[1].children[1]);
-btnShowKeyboard.addEventListener('click', () => {switchShow(customKeyboard.parentElement, 'none', 'flex')})
-
 // tasti close
-function buttonClose(parent, primaryBtn, primaryBtnText) {
+function buttonClose(parent, primaryBtn, textPrimaryBtn) {
   let btn = makeElement('button', 'x', parent, 'close');
   btn.addEventListener('click', () => {
   parent.style.display = 'none';
-  changeApparence(primaryBtn, primaryBtnText)
+  primaryBtn.innerHTML = textPrimaryBtn;
   });
-}
+};
 
-buttonClose(menuButtonSetupMaking.parentElement, btnOpenSetup, btnOpenSetupText)
-buttonClose(listMemo.parentElement)
-buttonClose(customKeyboard.parentElement)
+buttonClose(menuButtonSetupMaking.parentElement, btnOpenSetup, textBtnOpenSetup);
+buttonClose(listMemo.parentElement, btnShowMemos, textBtnShowMemos);
+buttonClose(customKeyboard.parentElement, btnShowKeyboard, textBtnShowKeyboard);
 
 //imposto il tasto RESET
 // btnReset = makeElement('button', 'RESET', body.children[7]);
