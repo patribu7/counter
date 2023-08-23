@@ -163,8 +163,8 @@ input[type="number"], #btnMakeButton {
   box-shadow: rgb(202, 204, 206) 3px 3px 6px 0px inset, rgba(60, 58, 58, 0.9) -3px -3px 6px 1px inset;
 }
 
-.elmMemo {
-
+.info-selection {
+  margin: 5px;
 }
 
 /* Chrome, Safari, Edge, Opera */

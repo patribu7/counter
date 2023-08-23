@@ -154,8 +154,6 @@ for (let el of menuList) {
   labelMenu.addEventListener('touchstart', () => switchShow(dropdownContent, 'block', 'none'));
 };
 
-//  switchShow(dropdownContent, 'block', 'none')
-
 //lista dei memos
 let listMemo = makeElement('div', '', space.children[0], 'list');
 listMemo.parentElement.style.display = 'none';
@@ -176,13 +174,16 @@ btnShowMemos.addEventListener('click', () => {
   switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
 });
 
-
 //bottone cancella tutti i memo
 const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[0]);
 btnDeleteMemos.addEventListener('click', () => {
   var confirm = confirmDelete(' memo');
   deleteAll('.elmMemo', confirm)
 });
+
+//info
+const infoSelection = makeElement('div', 'right click on element of a list for select it', menu.children[1].children[1].children[0], 'info-selection')
+
 
 //bottone cancella i memo/button selezionati
 const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[1].children[1].children[0]);
