@@ -12,10 +12,10 @@ function makeElement(type, text, parent, cls='') {
     element.classList.add(cls);
   }
   element.innerText = text;
-  parent.appendChild(element);
 
   /*se e' un div di una lista assegna la classe e ElmList*/
   if (parent.classList.contains('list')) {
+    parent.prepend(element);
     element.classList.add('listElm');
     // limitElmTo(10, parent);
     addClassColor(element);
@@ -34,10 +34,12 @@ function makeElement(type, text, parent, cls='') {
       } else {
         element.classList.add('to-delete')
       }
-
     });
-  };
 
+  } else {
+  parent.appendChild(element);    
+  
+  }
   return element
 };
 
