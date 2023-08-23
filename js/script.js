@@ -1,8 +1,3 @@
-//---------------impostazini---------------------
-
-let limitCharInListElm = 3;
-let limitCharInNumbermyConsole = 6;
-
 //---------------funzioni---------------------
 
 function limitElmTo(num, list) {
