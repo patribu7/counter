@@ -1,34 +1,50 @@
-# Counter fatto interamente con JavaScript come dimostrazione
+# Exercise js counter
+Counter done entirely with JavaScript as a demonstration.
 
-## ISTRUZIONI
+![](.readme/schreenshot.jpg)
 
-Usa i tasti +/- per cambiare la cifra all'intarno dello schermo
+## Usage example
+Use the +/- keys to change the digit within the screen.
 
-### MENU MEMO
-Si possono salvare i numeri mediante il menu "Memo > SAVE memo"
+![](.readme/usage_pm.gif)
 
-Per visualizzare i salvataggi "Memo > SHOW memo"
+### MEMO MENU
+The numbers can be saved "Memo > SAVE memo" menu
 
-Per cancellarli "Memo > DELETE memo"
+To view the saved "Memo > SHOW memo"
 
-### MENU CUSTOM BUTTON
+To delete them "Memo > DELETE memo"
 
-Si possono creare dei bottoni per contare in multipli di versi da 1.
-"Custom Button > New Button"
-Sotto si aprira' un nuovo menu. Inserire la cifra desiderata e premere il tasto "Make it!". Di default la cifra e' il numero che e' presente sullo schermo quando il form si apre.
+![](.readme/usage_pm.gif)
 
-Per visualizzare o nascondere i bottoni creati "Custom Button > SHOW keyboard"
+### CUSTOM BUTTON MENU
+Buttons can be created to count with different digits.
+"Custom Buttons > New Buttons"
+A new menu will open underneath. Enter the desired digit and press the "Make it!" button. The default digit is the number shown on the screen when the form opens.
 
-Per cancellarli tutti "Custom Button > DELETE keyboard"
+To show or hide the created buttons "Custom Button > SHOW keyboard"
 
+To delete them all "Custom Button > DELETE keyboard"
 
-### MENU DEL SELECT
+![](.readme/usage_custombutton.gif)
 
-Si possono cancellare i bottoni e i numeri memorizzati secondo alcuni criteri.
-Si possono cancellare tutti i:
-- bottoni/memo POSITIVI Del "Select > DELETE POSITIVE"
-- bottoni/memo NEGATIVI Del "Select > DELETE NEGATIVE"
-- bottoni/memo con numero pari a ZERO Del "Select > DELETE ZERO"
-- bottoni/memo selezionati
+### SELECT MENU
+You can delete the buttons and numbers memorized according to some criteria.
+You can delete all:
+- POSITIVE "DEL Select > DELETE POSITIVE" buttons/memos
+- NEGATIVE "DEL Select > DELETE NEGATIVE" buttons/memos
+- buttons/memo with number equal to ZERO "DEL Select > DELETE ZERO"
+- selected buttons/memos with right click and "Del Select > DELETE selected"
 
-Per selezionarli tasto destro del mouse e "Del Select > DELETE selected"
+![](.readme/usage_select.gif)
+
+### SCROLL TRUE THE LIST
+List of button and memos are scrollable
+
+![](.readme/usage_scroll.gif)
+
+## Meta
+
+Patrizia Busatto – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+
+[https://github.com/yourname/github-link](https://github.com/dbader/)

@@ -159,6 +159,13 @@ listMemo.parentElement.style.display = 'none';
 let customKeyboard = makeElement('div', '', space.children[1], 'list');
 customKeyboard.parentElement.style.display = 'none';
 
+//bottone salva memo
+const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
+btnSaveMemo.addEventListener('click', () => {
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  makeElement('div', number.innerText, listMemo);
+});
 
 //per mostrare i memo
 const textBtnShowMemos = 'SHOW memo';
@@ -168,13 +175,6 @@ btnShowMemos.addEventListener('click', () => {
   switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
 });
 
-//bottone salva memo
-const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
-btnSaveMemo.addEventListener('click', () => {
-  listMemo.parentElement.style.display = 'flex';
-  btnShowMemos.innerHTML = '^';
-  makeElement('div', number.innerText, listMemo);
-});
 
 //bottone cancella tutti i memo
 const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[0]);
