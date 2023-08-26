@@ -3,7 +3,7 @@ Counter done entirely with JavaScript as a demonstration.
 
 Test it __[here](https://patribu7.github.io/counter/)__!
 
-![](.readme/schreenshot.jpg)
+![](.readme/screenshot.jpg)
 
 ## Usage example
 Use the +/- keys to change the digit within the screen.
@@ -11,22 +11,18 @@ Use the +/- keys to change the digit within the screen.
 ![](.readme/usage_pm.gif)
 
 ### MEMO MENU
-The numbers can be saved "Memo > SAVE memo" menu
+To use the memo you can:
+- "Memo > SAVE memo": to save the number
+- "Memo > SHOW memo": To view saved numbers 
+- "Memo > DELETE memo": to delete them
 
-To view the saved "Memo > SHOW memo"
-
-To delete them "Memo > DELETE memo"
-
-![](.readme/usage_pm.gif)
+![](.readme/usage_memo.gif)
 
 ### CUSTOM BUTTON MENU
-Buttons can be created to count with different digits.
-"Custom Buttons > New Buttons"
-A new menu will open underneath. Enter the desired digit and press the "Make it!" button. The default digit is the number shown on the screen when the form opens.
-
-To show or hide the created buttons "Custom Button > SHOW keyboard"
-
-To delete them all "Custom Button > DELETE keyboard"
+- "Custom Buttons > New Buttons": buttons can be created to count with different values.
+A new menu will open underneath. Enter the desired value and press the "Make it!" button. The default digit is the number shown on the screen when the form opens.
+- "Custom Button > SHOW keyboard": to show or hide the created buttons 
+- "Custom Button > DELETE keyboard": to delete them
 
 ![](.readme/usage_custombutton.gif)
 
