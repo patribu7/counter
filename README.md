@@ -1,4 +1,4 @@
-# Exercise js counter
+# Javascript Counter Demo
 Counter done entirely with JavaScript as a demonstration.
 
 Test it __[here](https://patribu7.github.io/counter/)__!
