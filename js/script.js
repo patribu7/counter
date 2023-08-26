@@ -1,11 +1,4 @@
 //---------------funzioni---------------------
-
-function limitElmTo(num, list) {
-  if ( list.childElementCount > num) {
-    list.removeChild(list.getElementsByClassName('listElm')[0]);
-  };
-}
-
 function makeElement(type, text, parent, cls='') {
   const element = document.createElement(type);
   if (cls !== '') {
@@ -20,13 +13,6 @@ function makeElement(type, text, parent, cls='') {
     // limitElmTo(10, parent);
     addClassColor(element);
 
-    if (type === 'button') {
-      element.addEventListener('click', () => changeValue(+text, number))
-      element.classList.add('btnCustom')
-    } else {
-      element.classList.add('elmMemo')
-    };
-
     element.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       if (element.classList.contains('to-delete')) {
@@ -35,6 +21,14 @@ function makeElement(type, text, parent, cls='') {
         element.classList.add('to-delete')
       }
     });
+    
+    if (type === 'button') {
+      element.addEventListener('click', () => changeValue(+text, number))
+      element.classList.add('btnCustom')
+    } else {
+
+      element.classList.add('elmMemo')
+    };
 
   } else {
   parent.appendChild(element);    
@@ -42,7 +36,6 @@ function makeElement(type, text, parent, cls='') {
   }
   return element
 }
-
 
 /*assegna una classe che cambia il colore a seconda se il testo mostrato e' positivo, negativo, oppure zero*/
 function addClassColor(element) {
@@ -74,7 +67,7 @@ function switchShow(element, state1, state2) {
     }
 }
 
-function switchApparence(element, text1, text2) {
+function switchAppearance(element, text1, text2) {
   let currentText = element.innerHTML;
   switch (currentText) {
     case text1:
@@ -101,6 +94,12 @@ function makeCustomButton() {
     value.value = 0
   };
   makeElement('button', value.value, customKeyboard);
+}
+
+function limitElmTo(num, list) {
+  if ( list.childElementCount > num) {
+    list.removeChild(list.lastElementChild);
+  };
 }
 
 
@@ -172,7 +171,7 @@ const textBtnShowMemos = 'SHOW memo';
 const btnShowMemos = makeElement('button', textBtnShowMemos, menu.children[0].children[1].children[0]);
 btnShowMemos.addEventListener('click', () => {
   switchShow(listMemo.parentElement, 'none', 'flex');
-  switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
+  switchAppearance(btnShowMemos, textBtnShowMemos, textBtnClose)
 });
 
 
@@ -187,7 +186,6 @@ btnDeleteMemos.addEventListener('click', () => {
 
 //info
 const infoSelection = makeElement('div', 'right click on element memo or custom button for select it', menu.children[1].children[1].children[0], 'info-selection')
-
 
 //bottone cancella i memo/button selezionati
 const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[1].children[1].children[0]);
@@ -238,7 +236,7 @@ const textBtnOpenSetup = 'NEW BUTTON';
 const btnOpenSetup = makeElement('button', textBtnOpenSetup, menu.children[2].children[1].children[0]);
 btnOpenSetup.addEventListener('click', () => {
   value.value = +number.innerText; //il valore e' il numero nel myConsole di default
-  switchApparence(btnOpenSetup, textBtnOpenSetup, textBtnClose);
+  switchAppearance(btnOpenSetup, textBtnOpenSetup, textBtnClose);
   switchShow(menuButtonSetupMaking.parentElement, 'flex', 'none');
   insertValue.select(); //mette subito il focus sulla casella per inserire il valore
 });
@@ -248,7 +246,7 @@ const textBtnShowKeyboard = 'SHOW keyboard';
 const btnShowKeyboard = makeElement('button', textBtnShowKeyboard, menu.children[2].children[1].children[0]);
 btnShowKeyboard.addEventListener('click', () => {
   switchShow(customKeyboard.parentElement, 'none', 'flex');
-  switchApparence(btnShowKeyboard, textBtnShowKeyboard, textBtnClose)
+  switchAppearance(btnShowKeyboard, textBtnShowKeyboard, textBtnClose)
 });
 
 //bottone cancella tutti i bottoni custom
@@ -280,7 +278,7 @@ btnMakeButton.addEventListener('click', () => {
   btnShowKeyboard.innerHTML = '^';
 });
 
-// tasti close
+//---------------tasti close--------------------- 
 function buttonClose(parent, primaryBtn, textPrimaryBtn) {
   let btn = makeElement('button', 'x', parent, 'close');
   btn.addEventListener('click', () => {
