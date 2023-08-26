@@ -4,7 +4,7 @@ function limitElmTo(num, list) {
   if ( list.childElementCount > num) {
     list.removeChild(list.getElementsByClassName('listElm')[0]);
   };
-};
+}
 
 function makeElement(type, text, parent, cls='') {
   const element = document.createElement(type);
@@ -41,7 +41,7 @@ function makeElement(type, text, parent, cls='') {
 
   }
   return element
-};
+}
 
 
 /*assegna una classe che cambia il colore a seconda se il testo mostrato e' positivo, negativo, oppure zero*/
@@ -56,11 +56,11 @@ function addClassColor(element) {
     element.classList.add('zero');
 
   };
-};
+}
 
 function changeValue(value, element) {
       element.innerText = + element.innerText + value;
-};
+}
 
 function switchShow(element, state1, state2) {
   let currentState = element.style.display;
@@ -72,7 +72,7 @@ function switchShow(element, state1, state2) {
       element.style.display = state1;
       break;
     }
-};
+}
 
 function switchApparence(element, text1, text2) {
   let currentText = element.innerHTML;
@@ -83,17 +83,17 @@ function switchApparence(element, text1, text2) {
     case text2:
       element.innerHTML = text1;
       break;
-}};
+}}
 
-function confirmDelete(context) {
-  let confirmAction = confirm('Are you sure to delete all' + context + '?');
+function confirmDelete(context, extra='') {
+  let confirmAction = confirm('Are you sure to delete all' + context + '?' + extra);
   return confirmAction
 }
 
 function deleteAll(clsElm, confirmAction) {
   if (confirmAction) {
     document.querySelectorAll(clsElm).forEach(el => el.remove());
-}};
+}}
 
 function makeCustomButton() {
   /*si lascia vuoto valore il valore e' 0*/
@@ -101,7 +101,7 @@ function makeCustomButton() {
     value.value = 0
   };
   makeElement('button', value.value, customKeyboard);
-};
+}
 
 
 //---------------oggetti---------------------
@@ -196,7 +196,7 @@ btnDeleteSelected.addEventListener('click', () => {
   btnShowMemos.innerHTML = '^';
   customKeyboard.parentElement.style.display = 'flex';
   btnShowKeyboard.innerHTML = '^';
-  let confirm = confirmDelete(' selected');
+  let confirm = confirmDelete(' selected', ' For select a memo or custom button right click on it.');
   deleteAll('.to-delete', confirm)
 });
 
@@ -293,9 +293,6 @@ buttonClose(menuButtonSetupMaking.parentElement, btnOpenSetup, textBtnOpenSetup)
 buttonClose(listMemo.parentElement, btnShowMemos, textBtnShowMemos);
 buttonClose(customKeyboard.parentElement, btnShowKeyboard, textBtnShowKeyboard);
 
-//per i device accedono ai menu
-
 //imposto il tasto RESET
-// btnReset = makeElement('button', 'RESET', body.children[7]);
-// btnReset.classList.add('reset');
+// btnReset = makeElement('button', 'RESET', place, 'reset']);
 // btnReset.addEventListener('click', () => location.reload());
