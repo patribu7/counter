@@ -1,6 +1,8 @@
 # Exercise js counter
 Counter done entirely with JavaScript as a demonstration.
 
+Test it __[here](https://patribu7.github.io/counter/)__!
+
 ![](.readme/schreenshot.jpg)
 
 ## Usage example
@@ -38,13 +40,11 @@ You can delete all:
 
 ![](.readme/usage_select.gif)
 
-### SCROLL TRUE THE LIST
-List of button and memos are scrollable
+### LIST VIEW
+List of buttons and memos are scrollable to get a complete overview
 
 ![](.readme/usage_scroll.gif)
 
-## Meta
+## My links
 
-Patrizia Busatto – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+Patrizia Busatto – [@LinkedIn](https://www.linkedin.com/in/patrizia-busatto/)
