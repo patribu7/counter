@@ -141,12 +141,12 @@ input[type="number"], #btnMakeButton {
 
 }
 
-.positive {
+.positive, #plus {
   background-color: lightCoral;
   color: maroon;
 }
 
-.negative {
+.negative, #minus {
   background-color: lightskyblue;
   color: royalblue;
 }

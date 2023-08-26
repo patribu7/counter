@@ -38,7 +38,7 @@ function makeElement(type, text, parent, cls='') {
 
   } else {
   parent.appendChild(element);    
-  
+
   }
   return element
 };
@@ -63,7 +63,7 @@ function changeValue(value, element) {
 };
 
 function switchShow(element, state1, state2) {
-  var currentState = element.style.display;
+  let currentState = element.style.display;
   switch (currentState) {
     case state1:
       element.style.display = state2;
@@ -75,7 +75,7 @@ function switchShow(element, state1, state2) {
 };
 
 function switchApparence(element, text1, text2) {
-  var currentText = element.innerHTML;
+  let currentText = element.innerHTML;
   switch (currentText) {
     case text1:
       element.innerHTML = text2;
@@ -110,7 +110,7 @@ const textBtnClose = '^';
 const body = document.getElementsByTagName('body')[0];
 
 /*imposto il bottone meno*/
-const minus = makeElement('button', '', myConsole, 'negative');
+const minus = makeElement('button', '', myConsole);
 minus.id = 'minus';
 const spanMinus = makeElement('span', '-', minus);
 
@@ -119,7 +119,7 @@ const monitor = makeElement('div', '', myConsole);
 monitor.id = 'monitor';
 
 /*imposto il bottone piu'*/
-const plus = makeElement('button', '', myConsole, 'positive');
+const plus = makeElement('button', '', myConsole);
 plus.id = 'plus';
 const spanPlus = makeElement('span', '+', plus);
 
@@ -159,9 +159,6 @@ listMemo.parentElement.style.display = 'none';
 let customKeyboard = makeElement('div', '', space.children[1], 'list');
 customKeyboard.parentElement.style.display = 'none';
 
-//bottone salva memo
-const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
-btnSaveMemo.addEventListener('click', () => makeElement('div', number.innerText, listMemo));
 
 //per mostrare i memo
 const textBtnShowMemos = 'SHOW memo';
@@ -171,42 +168,68 @@ btnShowMemos.addEventListener('click', () => {
   switchApparence(btnShowMemos, textBtnShowMemos, textBtnClose)
 });
 
+//bottone salva memo
+const btnSaveMemo = makeElement('button', 'SAVE memo', menu.children[0].children[1].children[0]);
+btnSaveMemo.addEventListener('click', () => {
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  makeElement('div', number.innerText, listMemo);
+});
+
 //bottone cancella tutti i memo
 const btnDeleteMemos = makeElement('button', 'DELETE memo', menu.children[0].children[1].children[0]);
 btnDeleteMemos.addEventListener('click', () => {
-  var confirm = confirmDelete(' memo');
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  let confirm = confirmDelete(' memo');
   deleteAll('.elmMemo', confirm)
 });
 
 //info
-const infoSelection = makeElement('div', 'right click on element of a list for select it', menu.children[1].children[1].children[0], 'info-selection')
+const infoSelection = makeElement('div', 'right click on element memo or custom button for select it', menu.children[1].children[1].children[0], 'info-selection')
 
 
 //bottone cancella i memo/button selezionati
 const btnDeleteSelected = makeElement('button', 'DELETE selected', menu.children[1].children[1].children[0]);
 btnDeleteSelected.addEventListener('click', () => {
-  var confirm = confirmDelete(' selected');
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
+  let confirm = confirmDelete(' selected');
   deleteAll('.to-delete', confirm)
 });
 
 //bottone cancella i memo/button positivi
 const btnDeletePositive = makeElement('button', 'DELETE POSITIVE', menu.children[1].children[1].children[0]);
 btnDeletePositive.addEventListener('click', () => {
-  var confirm = confirmDelete(' positive');
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
+  let confirm = confirmDelete(' positive');
   deleteAll('.positive', confirm)
 });
 
 //bottone cancella i memo/button negativi
 const btnDeleteNegative = makeElement('button', 'DELETE NEGATIVE', menu.children[1].children[1].children[0]);
 btnDeleteNegative.addEventListener('click', () => {
-  var confirm = confirmDelete(' negative');
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
+  let confirm = confirmDelete(' negative');
   deleteAll('.negative', confirm)
 });
 
 //bottone cancella i memo/button zero
 const btnDeleteZero = makeElement('button', 'DELETE ZERO', menu.children[1].children[1].children[0]);
 btnDeleteZero.addEventListener('click', () => {
-  var confirm = confirmDelete(' zero');
+  listMemo.parentElement.style.display = 'flex';
+  btnShowMemos.innerHTML = '^';
+  customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
+  let confirm = confirmDelete(' zero');
   deleteAll('.zero', confirm)
 });
 
@@ -231,6 +254,8 @@ btnShowKeyboard.addEventListener('click', () => {
 //bottone cancella tutti i bottoni custom
 const btnDeleteCustomButtons = makeElement('button', 'DELETE keyboard', menu.children[2].children[1].children[0])
 btnDeleteCustomButtons.addEventListener('click', () => {
+  customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
   var confirm = confirmDelete(' custom buttons');
   deleteAll('.btnCustom', confirm)
 });
@@ -252,6 +277,7 @@ const btnMakeButton = makeElement('button', 'make it!', menuButtonSetupMaking);
 btnMakeButton.addEventListener('click', () => {
   makeCustomButton();
   customKeyboard.parentElement.style.display = 'flex';
+  btnShowKeyboard.innerHTML = '^';
 });
 
 // tasti close
